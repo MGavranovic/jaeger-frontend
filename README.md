@@ -1,50 +1,21 @@
-# React + TypeScript + Vite
+# Jaeger - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Track your job applications using Jaeger.
 
-Currently, two official plugins are available:
+This repository contains the frontend of Jaeger, an application designed to help users manage and monitor job applications. Built with a React/TypeScript stack, this app provides a streamlined and interactive dashboard for tracking the status, details, and potential progress of job applications.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Table of Contents
 
-## Expanding the ESLint configuration
+-[Features](#features) -[Tech Stack](#tech-stack)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Features
 
-- Configure the top-level `parserOptions` property like this:
+-Dashboard: View all job application statistics for a selected period of time.
+-Notes: Keep all job application details in the sticky notes, includinging statuses, additional notes, dates, etc.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+### Tech Stack
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+-React with TypeScript
+-React Redux: for managing global state
+-React Query: for managing remote state, including caching, synchronization and background updates
+-styled-components: scoped CSS for styling
