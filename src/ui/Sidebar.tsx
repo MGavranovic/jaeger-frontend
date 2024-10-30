@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const StyledSidebar = styled.aside`
-  border-right: 1px;
+  border-right: 1px solid red;
 `;
 
 function Sidebar() {
