@@ -6,16 +6,17 @@ This repository contains the frontend of Jaeger, an application designed to help
 
 ### Table of Contents
 
--[Features](#features) -[Tech Stack](#tech-stack)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
 
 ### Features
 
--Dashboard: View all job application statistics for a selected period of time.
--Notes: Keep all job application details in the sticky notes, includinging statuses, additional notes, dates, etc.
+- **Dashboard**: View all job application statistics for a selected period of time.
+- **Notes**: Keep all job application details in the sticky notes, includinging statuses, additional notes, dates, etc.
 
 ### Tech Stack
 
--React with TypeScript
--React Redux: for managing global state
--React Query: for managing remote state, including caching, synchronization and background updates
--styled-components: scoped CSS for styling
+- **React** with **TypeScript**
+- **React Redux**: for managing global state
+- **React Query**: for managing remote state, including caching, synchronization and background updates
+- **styled-components**: scoped CSS for styling
