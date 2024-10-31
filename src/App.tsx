@@ -2,8 +2,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import GlobalStyles from "./styles/GlobalStyles";
 
 import AppLayout from "./ui/AppLayout";
-import Dashboard from "./components/dashboard/Dashboard";
-import Notes from "./components/notes/Notes";
+import Dashboard from "./pages/Dashboard";
+import Notes from "./pages/Notes";
 
 const router = createBrowserRouter([
   {
