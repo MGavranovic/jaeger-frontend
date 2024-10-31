@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Logo from "./Logo";
 
 const StyledSidebar = styled.aside`
   border-right: 1px solid red;
@@ -10,7 +11,13 @@ const StyledSidebar = styled.aside`
 `;
 
 function Sidebar() {
-  return <StyledSidebar>SIDEBAR</StyledSidebar>;
+  return (
+    <StyledSidebar>
+      <Logo />
+      <p>Home/Dashboard</p>
+      <p>Notes</p>
+    </StyledSidebar>
+  );
 }
 
 export default Sidebar;
