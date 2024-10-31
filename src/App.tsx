@@ -4,6 +4,7 @@ import GlobalStyles from "./styles/GlobalStyles";
 import AppLayout from "./ui/AppLayout";
 import Dashboard from "./pages/Dashboard";
 import Notes from "./pages/Notes";
+import PageNotFound from "./pages/PageNotFound";
 
 const router = createBrowserRouter([
   {
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
       { path: "/dashboard", element: <Dashboard /> },
       { path: "/notes", element: <Notes /> },
     ],
+  },
+  {
+    path: "*",
+    element: <PageNotFound />,
   },
 ]);
 
