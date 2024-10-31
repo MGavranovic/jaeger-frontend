@@ -1,7 +1,7 @@
+import { Outlet } from "react-router-dom";
 import styled from "styled-components";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
-import { Outlet } from "react-router-dom";
 
 const StyledAppLayout = styled.div`
   display: grid;
@@ -19,14 +19,11 @@ const Container = styled.div`
   max-width: 120rem;
   margin: 0 auto;
   display: flex;
-  flex-direction: column;
-  gap: 3.2rem;
 `;
 
 function AppLayout() {
   return (
     <StyledAppLayout>
-      App Layout
       <Header />
       <Sidebar />
       <Main>
