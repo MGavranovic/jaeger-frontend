@@ -3,7 +3,7 @@ import Logo from "./Logo";
 import SideNav from "./SideNav";
 
 const StyledSidebar = styled.aside`
-  border-right: 1px solid red;
+  border-right: 1px solid var(--color-zinc-100);
   padding: 3rem;
 
   grid-row: 1 / -1;
