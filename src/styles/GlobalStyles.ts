@@ -60,6 +60,15 @@ const GlobalStyles = styled.createGlobalStyle`
     line-height: 1.5;
     font-size: 1.6rem;
   }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  ul {
+    list-style: none;
+  }
 `;
 
 export default GlobalStyles;
