@@ -45,6 +45,21 @@ const GlobalStyles = styled.createGlobalStyle`
     padding: 0;
     margin: 0;
   }
+
+  html {
+    font-size: 63%;
+  }
+
+  body {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    color: var(--color-zinc-900);
+    text-transform: uppercase;
+
+    min-height: 100vh;
+    line-height: 1.5;
+    font-size: 1.6rem;
+  }
 `;
 
 export default GlobalStyles;
