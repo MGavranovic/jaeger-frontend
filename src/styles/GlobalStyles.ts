@@ -36,6 +36,11 @@ const GlobalStyles = styled.createGlobalStyle`
     --color-green-700: #15803d;
     --color-red-100: #fee2e2;
     --color-red-700: #b91c1c;
+
+    --border-radius-tiny: 3px;
+    --border-radius-sm: 5px;
+    --border-radius-md: 7px;
+    --border-radius-lg: 9px;
   }
 
   *,

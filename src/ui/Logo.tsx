@@ -1,14 +1,18 @@
 import styled from "styled-components";
 
+const StyledLogo = styled.div`
+  text-align: center;
+`;
+
 const StyledImg = styled.img`
-  width: 30px;
+  width: 9rem;
 `;
 
 function Logo() {
   return (
-    <div>
+    <StyledLogo>
       <StyledImg src="/sidebar-logo-reticle.png" alt="Sidebar Logo Reticle" />
-    </div>
+    </StyledLogo>
   );
 }
 
