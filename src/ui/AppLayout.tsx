@@ -11,6 +11,7 @@ const StyledAppLayout = styled.div`
 `;
 
 const Main = styled.main`
+  background-color: var(--color-zinc-50);
   padding: 3rem;
   overflow: scroll;
 `;
