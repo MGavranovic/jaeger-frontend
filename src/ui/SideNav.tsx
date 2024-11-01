@@ -1,3 +1,4 @@
+import { FaUserCog } from "react-icons/fa";
 import { FaNoteSticky } from "react-icons/fa6";
 import { HiHome } from "react-icons/hi2";
 import { NavLink } from "react-router-dom";
@@ -14,7 +15,8 @@ const StyledNavLink = styled(NavLink)`
   &:visited {
     display: flex;
     align-items: center;
-    gap: 1.3rem;
+    gap: 1.4rem;
+    padding: 5px;
 
     color: var(--color-zinc-500);
   }
@@ -57,6 +59,12 @@ function SideNav() {
           <StyledNavLink to="/notes">
             <FaNoteSticky />
             <span>Notes</span>
+          </StyledNavLink>
+        </li>
+        <li>
+          <StyledNavLink to="/user">
+            <FaUserCog />
+            <span>User</span>
           </StyledNavLink>
         </li>
       </StyledNav>

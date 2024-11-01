@@ -5,6 +5,7 @@ import AppLayout from "./ui/AppLayout";
 import Dashboard from "./pages/Dashboard";
 import Notes from "./pages/Notes";
 import PageNotFound from "./pages/PageNotFound";
+import UserSettings from "./pages/UserSettings";
 
 const router = createBrowserRouter([
   {
@@ -13,6 +14,7 @@ const router = createBrowserRouter([
     children: [
       { path: "/dashboard", element: <Dashboard /> },
       { path: "/notes", element: <Notes /> },
+      { path: "/user", element: <UserSettings /> },
     ],
   },
   {
