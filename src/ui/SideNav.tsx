@@ -4,6 +4,10 @@ import { HiHome } from "react-icons/hi2";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
+interface SideNavProps {
+  collapsed: boolean;
+}
+
 const StyledNav = styled.ul`
   display: flex;
   flex-direction: column;
@@ -15,10 +19,12 @@ const StyledNavLink = styled(NavLink)`
   &:visited {
     display: flex;
     align-items: center;
-    gap: 1.4rem;
+    gap: 1rem;
     padding: 5px;
-
     color: var(--color-zinc-500);
+    transition: background-color 0.3s;
+
+    white-space: nowrap;
   }
 
   &:hover,
@@ -45,26 +51,26 @@ const StyledNavLink = styled(NavLink)`
   }
 `;
 
-function SideNav() {
+function SideNav({ collapsed }: SideNavProps) {
   return (
     <nav>
       <StyledNav>
         <li>
           <StyledNavLink to="/dashboard">
             <HiHome />
-            <span>Home</span>
+            {collapsed || <span>Home</span>}
           </StyledNavLink>
         </li>
         <li>
           <StyledNavLink to="/notes">
             <FaNoteSticky />
-            <span>Notes</span>
+            {collapsed || <span>Notes</span>}
           </StyledNavLink>
         </li>
         <li>
           <StyledNavLink to="/user">
             <FaUserCog />
-            <span>User</span>
+            {collapsed || <span>User</span>}
           </StyledNavLink>
         </li>
       </StyledNav>

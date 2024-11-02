@@ -1,17 +1,29 @@
 import styled from "styled-components";
 
+interface LogoProps {
+  collapsed: boolean;
+  toggleSidebar: () => void;
+}
+
 const StyledLogo = styled.div`
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20%;
 `;
 
-const StyledImg = styled.img`
-  width: 9rem;
+const StyledImg = styled.img<LogoProps>`
+  width: ${(props) => (props.collapsed ? "3rem" : "9rem")};
 `;
 
-function Logo() {
+function Logo({ collapsed, toggleSidebar }: LogoProps) {
   return (
-    <StyledLogo>
-      <StyledImg src="/sidebar-logo-reticle.png" alt="Sidebar Logo Reticle" />
+    <StyledLogo onClick={toggleSidebar}>
+      <StyledImg
+        src="/sidebar-logo-reticle.png"
+        alt="Sidebar Logo Reticle"
+        collapsed={collapsed}
+      />
     </StyledLogo>
   );
 }
