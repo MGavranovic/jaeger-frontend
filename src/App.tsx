@@ -6,6 +6,7 @@ import Dashboard from "./pages/Dashboard";
 import Notes from "./pages/Notes";
 import PageNotFound from "./pages/PageNotFound";
 import UserSettings from "./pages/UserSettings";
+import Login from "./pages/Login";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: "*",
     element: <PageNotFound />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
   },
 ]);
 
