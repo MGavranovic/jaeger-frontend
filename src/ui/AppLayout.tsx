@@ -19,8 +19,8 @@ const Main = styled.main`
 
 const Container = styled.div`
   max-width: 120rem;
+  height: 100%;
   margin: 0 auto;
-  display: flex;
 `;
 
 function AppLayout() {
