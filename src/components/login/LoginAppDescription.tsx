@@ -8,6 +8,7 @@ const DescriptionContainer = styled.div`
   text-align: center;
   background-color: var(--color-lime-100);
   width: 50vw;
+  gap: 1.4rem;
 `;
 
 function LoginAppDescription() {
