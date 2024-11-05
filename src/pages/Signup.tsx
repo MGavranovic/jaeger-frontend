@@ -50,6 +50,7 @@ const Form = styled.form`
 function Signup() {
   return (
     <Container>
+      Logo {/* placeholder */}
       <h1>Jaeger</h1>
       <Form action="">
         <NameContainer>
