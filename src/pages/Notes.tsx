@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+interface NoteProps {
+  color: string;
+}
+
 const NotesContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -9,22 +13,42 @@ const NotesContainer = styled.div`
 const NoteContainer = styled.div`
   border: 1px solid red;
   background-color: white;
+  text-align: center;
 `;
 
+const PlaceholderNote = styled.div<NoteProps>`
+  background-color: ${(props) => props.color};
+  margin: 10px;
+`;
+
+/* TODO: 
+- this p elements are placeholders
+- they will be representing the stages of the job app process
+- could add one more note container for the offers were user is rejected
+- the note should not move through the sections unless the user changes the current stage in the process
+- notes can skip straight to the "pottential" last "rejected" section in case user gets that kind of response during the process
+*/
 function Notes() {
   return (
     <NotesContainer>
       <NoteContainer>
-        <p>Note 1</p>
+        <p>Applied</p>
+        <PlaceholderNote color={"var(--color-lime-300)"}>
+          test note
+        </PlaceholderNote>
+        <PlaceholderNote color="red">test note</PlaceholderNote>
       </NoteContainer>
       <NoteContainer>
-        <p>Note 2</p>
+        <p>Got response</p>
+        <PlaceholderNote color="var(--color-amber-600)">
+          test note
+        </PlaceholderNote>
       </NoteContainer>
       <NoteContainer>
-        <p>Note 3</p>
+        <p>Interview</p>
       </NoteContainer>
       <NoteContainer>
-        <p>Note 4</p>
+        <p>Offer</p>
       </NoteContainer>
     </NotesContainer>
   );
