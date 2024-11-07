@@ -8,6 +8,7 @@ import PageNotFound from "./pages/PageNotFound";
 import UserSettings from "./pages/UserSettings";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import getNotes from "./data/data";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+  // NOTE: testing dummy data generation
+  const notes = getNotes();
+  console.log(notes);
+
   return (
     <>
       <GlobalStyles />
