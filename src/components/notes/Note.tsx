@@ -7,6 +7,7 @@ const StyledNote = styled.div`
   border-radius: var(--border-radius-sm);
 `;
 
+// TODO: add border radius to header and footer borders
 const NoteHeader = styled.div`
   display: flex;
   justify-content: space-between;
