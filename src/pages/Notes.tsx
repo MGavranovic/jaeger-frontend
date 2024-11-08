@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Note from "../components/notes/Note";
 
 interface NoteProps {
   color: string;
@@ -36,6 +37,7 @@ function Notes() {
         <PlaceholderNote color={"var(--color-lime-300)"}>
           test note
         </PlaceholderNote>
+        <Note />
         <PlaceholderNote color="red">test note</PlaceholderNote>
       </NoteContainer>
       <NoteContainer>
