@@ -40,6 +40,62 @@ function Notes() {
         </PlaceholderNote>
         <Note />
         <PlaceholderNote color="red">test note</PlaceholderNote>
+        {/* Testing scroll */}
+        <PlaceholderNote color={"var(--color-lime-300)"}>
+          test note
+        </PlaceholderNote>
+        <PlaceholderNote color={"var(--color-lime-300)"}>
+          test note
+        </PlaceholderNote>
+        <PlaceholderNote color={"var(--color-lime-300)"}>
+          test note
+        </PlaceholderNote>
+        <PlaceholderNote color={"var(--color-lime-300)"}>
+          test note
+        </PlaceholderNote>
+        <PlaceholderNote color={"var(--color-lime-300)"}>
+          test note
+        </PlaceholderNote>
+        <PlaceholderNote color={"var(--color-lime-300)"}>
+          test note
+        </PlaceholderNote>
+        <PlaceholderNote color={"var(--color-lime-300)"}>
+          test note
+        </PlaceholderNote>
+        <PlaceholderNote color={"var(--color-lime-300)"}>
+          test note
+        </PlaceholderNote>
+        <PlaceholderNote color={"var(--color-lime-300)"}>
+          test note
+        </PlaceholderNote>
+        <PlaceholderNote color={"var(--color-lime-300)"}>
+          test note
+        </PlaceholderNote>
+        <PlaceholderNote color={"var(--color-lime-300)"}>
+          test note
+        </PlaceholderNote>
+        <PlaceholderNote color={"var(--color-lime-300)"}>
+          test note
+        </PlaceholderNote>
+        <PlaceholderNote color={"var(--color-lime-300)"}>
+          test note
+        </PlaceholderNote>
+        <PlaceholderNote color={"var(--color-lime-300)"}>
+          test note
+        </PlaceholderNote>
+        <PlaceholderNote color={"var(--color-lime-300)"}>
+          test note
+        </PlaceholderNote>
+        <PlaceholderNote color={"var(--color-lime-300)"}>
+          test note
+        </PlaceholderNote>
+        <PlaceholderNote color={"var(--color-lime-300)"}>
+          test note
+        </PlaceholderNote>
+        <PlaceholderNote color={"var(--color-lime-300)"}>
+          test note
+        </PlaceholderNote>
+        {/* Testing scroll */}
       </NoteContainer>
       <NoteContainer>
         <p>Got response</p>
