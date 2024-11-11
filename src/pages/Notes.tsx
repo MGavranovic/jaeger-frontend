@@ -9,6 +9,7 @@ const NotesContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   height: 100%;
+  gap: 1rem;
 `;
 
 const NoteContainer = styled.div`
