@@ -13,7 +13,8 @@ const NotesContainer = styled.div`
 `;
 
 const NoteContainer = styled.div`
-  border: 1px solid red;
+  border: 1px solid var(--color-zinc-200);
+  border-radius: var(--border-radius-sm);
   background-color: white;
   text-align: center;
 `;
@@ -21,6 +22,11 @@ const NoteContainer = styled.div`
 const PlaceholderNote = styled.div<NoteProps>`
   background-color: ${(props) => props.color};
   margin: 10px;
+`;
+
+const StyledHeading = styled.header`
+  border-bottom: 1px solid var(--color-zinc-200);
+  padding: 1rem 0;
 `;
 
 /* TODO: 
@@ -34,7 +40,7 @@ function Notes() {
   return (
     <NotesContainer>
       <NoteContainer>
-        <p>Applied</p>
+        <StyledHeading>Applied</StyledHeading>
         <PlaceholderNote color={"var(--color-lime-300)"}>
           test note
         </PlaceholderNote>
@@ -98,16 +104,16 @@ function Notes() {
         {/* Testing scroll */}
       </NoteContainer>
       <NoteContainer>
-        <p>Got response</p>
+        <StyledHeading>Got response</StyledHeading>
         <PlaceholderNote color="var(--color-amber-600)">
           test note
         </PlaceholderNote>
       </NoteContainer>
       <NoteContainer>
-        <p>Interview</p>
+        <StyledHeading>Interview</StyledHeading>
       </NoteContainer>
       <NoteContainer>
-        <p>Offer</p>
+        <StyledHeading>Offer</StyledHeading>
       </NoteContainer>
     </NotesContainer>
   );
