@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 const StyledNote = styled.div`
-  background-color: var(--color-amber-200);
+  background-color: var(--color-zinc-50);
   margin: 10px;
-  border: 1px solid var(--color-amber-400);
+  border: 1px solid var(--color-zinc-300);
   border-radius: var(--border-radius-sm);
 `;
 
@@ -12,7 +12,9 @@ const NoteHeader = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 1rem;
-  border-bottom: 1px solid red;
+  border-bottom: 1px solid var(--color-zinc-300);
+  border-radius: var(--border-radius-sm);
+  background-color: var(--color-zinc-100);
 `;
 
 const NoteMainContent = styled.div`
@@ -20,8 +22,10 @@ const NoteMainContent = styled.div`
 `;
 
 const NoteFooter = styled.footer`
-  border-top: 1px solid red;
+  border-top: 1px solid var(--color-zinc-300);
+  border-radius: var(--border-radius-sm);
   padding: 1rem;
+  background-color: var(--color-zinc-100);
 `;
 
 // TODO:

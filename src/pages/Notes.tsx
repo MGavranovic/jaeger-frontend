@@ -27,6 +27,7 @@ const PlaceholderNote = styled.div<NoteProps>`
 const StyledHeading = styled.header`
   border-bottom: 1px solid var(--color-zinc-200);
   padding: 1rem 0;
+  background-color: var(--color-lime-100);
 `;
 
 /* TODO: 
