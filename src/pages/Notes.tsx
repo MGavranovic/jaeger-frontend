@@ -17,6 +17,8 @@ const NoteContainer = styled.div`
   border-radius: var(--border-radius-sm);
   background-color: white;
   text-align: center;
+  overflow: scroll;
+  scrollbar-width: none;
 `;
 
 const PlaceholderNote = styled.div<NoteProps>`
