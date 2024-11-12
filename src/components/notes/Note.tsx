@@ -1,4 +1,9 @@
 import styled from "styled-components";
+import { ApplicationStatus, NoteDetails } from "../../data/data";
+
+interface NoteProps {
+  note: NoteDetails;
+}
 
 const StyledNote = styled.div`
   background-color: var(--color-zinc-50);
@@ -28,17 +33,35 @@ const NoteFooter = styled.footer`
   background-color: var(--color-zinc-100);
 `;
 
+const StyledStatus = styled.p<{ applicationStatus: ApplicationStatus }>`
+  ${({ applicationStatus }) => `
+    background-color: ${
+      {
+        applied: "var(--color-zinc-500)",
+        "got-response": "var(--color-amber-300)",
+        interview: "var(--color-lime-300)",
+        offer: "var(--color-lime-600)",
+        rejected: "var(--color-red-700)",
+      }[applicationStatus] || "var(--color-zinc-400)"
+    };
+  `}
+  padding: 0 10px;
+  border-radius: var(--border-radius-lg);
+`;
+
 // TODO:
 /*
 p elem as placeholders
 Will be replaced by actual values
 */
-function Note() {
+function Note({ note }: NoteProps) {
   return (
     <StyledNote>
       <NoteHeader>
         <p>Note id#</p>
-        <p>status</p>
+        <StyledStatus applicationStatus={note.applicationStatus}>
+          {note.applicationStatus}
+        </StyledStatus>
       </NoteHeader>
       <NoteMainContent>
         <p>Company</p>

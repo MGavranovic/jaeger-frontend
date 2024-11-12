@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import Note from "../components/notes/Note";
+import getNotes, { NoteDetails } from "../data/data";
+import { useState } from "react";
 
 interface NoteProps {
   color: string;
@@ -21,15 +23,13 @@ const NoteContainer = styled.div`
   scrollbar-width: none;
 `;
 
-const PlaceholderNote = styled.div<NoteProps>`
-  background-color: ${(props) => props.color};
-  margin: 10px;
-`;
-
 const StyledHeading = styled.header`
+  position: sticky;
+  top: 0;
   border-bottom: 1px solid var(--color-zinc-200);
   padding: 1rem 0;
   background-color: var(--color-lime-100);
+  z-index: 1;
 `;
 
 /* TODO: 
@@ -40,81 +40,29 @@ const StyledHeading = styled.header`
 - notes can skip straight to the "pottential" last "rejected" section in case user gets that kind of response during the process
 */
 function Notes() {
+  // NOTE: I know this generates a new set of data on every render but this is just a temp solution for testing
+  const [notes, setNotes] = useState<NoteDetails[]>(getNotes());
+
   return (
     <NotesContainer>
       <NoteContainer>
         <StyledHeading>Applied</StyledHeading>
-        <PlaceholderNote color={"var(--color-lime-300)"}>
-          test note
-        </PlaceholderNote>
-        <Note />
-        <PlaceholderNote color="red">test note</PlaceholderNote>
-        {/* Testing scroll */}
-        <PlaceholderNote color={"var(--color-lime-300)"}>
-          test note
-        </PlaceholderNote>
-        <PlaceholderNote color={"var(--color-lime-300)"}>
-          test note
-        </PlaceholderNote>
-        <PlaceholderNote color={"var(--color-lime-300)"}>
-          test note
-        </PlaceholderNote>
-        <PlaceholderNote color={"var(--color-lime-300)"}>
-          test note
-        </PlaceholderNote>
-        <PlaceholderNote color={"var(--color-lime-300)"}>
-          test note
-        </PlaceholderNote>
-        <PlaceholderNote color={"var(--color-lime-300)"}>
-          test note
-        </PlaceholderNote>
-        <PlaceholderNote color={"var(--color-lime-300)"}>
-          test note
-        </PlaceholderNote>
-        <PlaceholderNote color={"var(--color-lime-300)"}>
-          test note
-        </PlaceholderNote>
-        <PlaceholderNote color={"var(--color-lime-300)"}>
-          test note
-        </PlaceholderNote>
-        <PlaceholderNote color={"var(--color-lime-300)"}>
-          test note
-        </PlaceholderNote>
-        <PlaceholderNote color={"var(--color-lime-300)"}>
-          test note
-        </PlaceholderNote>
-        <PlaceholderNote color={"var(--color-lime-300)"}>
-          test note
-        </PlaceholderNote>
-        <PlaceholderNote color={"var(--color-lime-300)"}>
-          test note
-        </PlaceholderNote>
-        <PlaceholderNote color={"var(--color-lime-300)"}>
-          test note
-        </PlaceholderNote>
-        <PlaceholderNote color={"var(--color-lime-300)"}>
-          test note
-        </PlaceholderNote>
-        <PlaceholderNote color={"var(--color-lime-300)"}>
-          test note
-        </PlaceholderNote>
-        <PlaceholderNote color={"var(--color-lime-300)"}>
-          test note
-        </PlaceholderNote>
-        <PlaceholderNote color={"var(--color-lime-300)"}>
-          test note
-        </PlaceholderNote>
-        {/* Testing scroll */}
+
+        {/*// NOTE: working on notes */}
+        {notes.map((note) => (
+          <Note key={note.id} note={note}></Note>
+        ))}
+        {/*// NOTE:*/}
       </NoteContainer>
+
       <NoteContainer>
         <StyledHeading>Got response</StyledHeading>
-        <PlaceholderNote color="var(--color-amber-600)">
-          test note
-        </PlaceholderNote>
       </NoteContainer>
+
       <NoteContainer>
         <StyledHeading>Interview</StyledHeading>
       </NoteContainer>
+
       <NoteContainer>
         <StyledHeading>Offer</StyledHeading>
       </NoteContainer>

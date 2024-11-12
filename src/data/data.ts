@@ -1,13 +1,13 @@
 import { faker } from "@faker-js/faker";
 
-type ApplicationStatus =
+export type ApplicationStatus =
   | "applied"
   | "got-response"
   | "interview"
   | "offer"
   | "rejected";
 
-interface Note {
+export interface NoteDetails {
   id: string;
   user: string;
   email: string;
@@ -20,7 +20,7 @@ interface Note {
 
 // NOTE: keep these comments for the future as they will be needed
 // this will create an array of notes that I need for testing
-const Notes: Note[] = Array.from({ length: 10 }, () => ({
+const NotesData: NoteDetails[] = Array.from({ length: 10 }, () => ({
   // this is the ID of the application
   id: faker.string.uuid(),
   // this is currently just a random full name
@@ -45,6 +45,6 @@ const Notes: Note[] = Array.from({ length: 10 }, () => ({
   ]),
 }));
 
-export default function getNotes(): Note[] {
-  return Notes;
+export default function getNotes(): NoteDetails[] {
+  return NotesData;
 }
