@@ -68,7 +68,7 @@ const GlobalStyles = styled.createGlobalStyle`
     font-family: "Poppins", sans-serif;
     font-weight: 600;
     color: var(--color-zinc-900);
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
 
     min-height: 100vh;
     line-height: 1.5;
