@@ -39,9 +39,10 @@ const StyledStatus = styled.p<{ applicationStatus: ApplicationStatus }>`
       {
         applied: "var(--color-zinc-500)",
         "got-response": "var(--color-amber-300)",
-        interview: "var(--color-lime-300)",
-        offer: "var(--color-lime-600)",
+        interview: "var(--color-cyan-700)",
+        offer: "var(--color-lime-500)",
         rejected: "var(--color-red-700)",
+        accepted: "var(--color-lime-700)",
       }[applicationStatus] || "var(--color-zinc-400)"
     };
   `}

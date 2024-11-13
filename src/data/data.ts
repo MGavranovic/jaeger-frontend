@@ -5,7 +5,8 @@ export type ApplicationStatus =
   | "got-response"
   | "interview"
   | "offer"
-  | "rejected";
+  | "rejected"
+  | "accepted";
 
 export interface NoteDetails {
   id: string;
@@ -42,6 +43,7 @@ const NotesData: NoteDetails[] = Array.from({ length: 10 }, () => ({
     "interview",
     "offer",
     "rejected",
+    "accepted",
   ]),
 }));
 

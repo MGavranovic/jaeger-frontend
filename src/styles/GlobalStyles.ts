@@ -37,6 +37,9 @@ const GlobalStyles = styled.createGlobalStyle`
     --color-red-100: #fee2e2;
     --color-red-700: #b91c1c;
 
+    --color-cyan-100: #cffafe;
+    --color-cyan-700: #0e7490;
+
     --border-radius-tiny: 3px;
     --border-radius-sm: 5px;
     --border-radius-md: 7px;

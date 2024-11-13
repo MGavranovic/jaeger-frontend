@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Note from "../components/notes/Note";
-import getNotes, { NoteDetails } from "../data/data";
+import getNotes, { ApplicationStatus, NoteDetails } from "../data/data";
 import { useState } from "react";
 
 interface NoteProps {
@@ -38,10 +38,22 @@ const StyledHeading = styled.header`
 - could add one more note container for the offers were user is rejected
 - the note should not move through the sections unless the user changes the current stage in the process
 - notes can skip straight to the "pottential" last "rejected" section in case user gets that kind of response during the process
+
+
+NOTE: I still have to think about how to filter the Notes here
+1) I'm not sure if I should have a seperate section for each status 
+2) I can use multiple statuses under each section
+The problem with 1) is design
+The problem with 2) is readability and it seems counterintuitive
 */
 function Notes() {
   // NOTE: I know this generates a new set of data on every render but this is just a temp solution for testing
   const [notes, setNotes] = useState<NoteDetails[]>(getNotes());
+
+  const notesByStatus = notes.reduce((acc, note) => {
+    (acc[note.applicationStatus] ||= []).push(note);
+    return acc;
+  }, {} as Record<ApplicationStatus, NoteDetails[]>);
 
   return (
     <NotesContainer>
@@ -49,22 +61,37 @@ function Notes() {
         <StyledHeading>Applied</StyledHeading>
 
         {/*// NOTE: working on notes */}
-        {notes.map((note) => (
-          <Note key={note.id} note={note}></Note>
+        {notesByStatus["applied"]?.map((note) => (
+          <Note key={note.id} note={note} />
         ))}
         {/*// NOTE:*/}
       </NoteContainer>
 
       <NoteContainer>
         <StyledHeading>Got response</StyledHeading>
+        {notesByStatus["got-response"]?.map((note) => (
+          <Note key={note.id} note={note} />
+        ))}
       </NoteContainer>
 
       <NoteContainer>
         <StyledHeading>Interview</StyledHeading>
+        {notesByStatus["interview"]?.map((note) => (
+          <Note key={note.id} note={note} />
+        ))}
       </NoteContainer>
 
       <NoteContainer>
         <StyledHeading>Offer</StyledHeading>
+        {notesByStatus["offer"]?.map((note) => (
+          <Note key={note.id} note={note} />
+        ))}
+        {notesByStatus["rejected"]?.map((note) => (
+          <Note key={note.id} note={note} />
+        ))}
+        {notesByStatus["accepted"]?.map((note) => (
+          <Note key={note.id} note={note} />
+        ))}
       </NoteContainer>
     </NotesContainer>
   );
