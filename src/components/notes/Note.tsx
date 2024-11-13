@@ -12,25 +12,32 @@ const StyledNote = styled.div`
   border-radius: var(--border-radius-sm);
 `;
 
-// TODO: add border radius to header and footer borders
 const NoteHeader = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 1rem;
   border-bottom: 1px solid var(--color-zinc-300);
   border-radius: var(--border-radius-sm);
-  background-color: var(--color-zinc-100);
+  background-color: var(--color-zinc-200);
 `;
 
 const NoteMainContent = styled.div`
   padding: 1rem;
 `;
 
+const NoteMainSections = styled.div`
+  border-bottom: 1px solid var(--color-zinc-200);
+  padding: 1rem;
+  border-radius: var(--border-radius-sm);
+  display: flex;
+  justify-content: space-between;
+`;
+
 const NoteFooter = styled.footer`
   border-top: 1px solid var(--color-zinc-300);
   border-radius: var(--border-radius-sm);
   padding: 1rem;
-  background-color: var(--color-zinc-100);
+  background-color: var(--color-zinc-200);
 `;
 
 const StyledStatus = styled.p<{ applicationStatus: ApplicationStatus }>`
@@ -56,6 +63,7 @@ p elem as placeholders
 Will be replaced by actual values
 */
 function Note({ note }: NoteProps) {
+  console.log(typeof note.appliedOnDate);
   return (
     <StyledNote>
       <NoteHeader>
@@ -65,14 +73,31 @@ function Note({ note }: NoteProps) {
         </StyledStatus>
       </NoteHeader>
       <NoteMainContent>
-        <p>Company</p>
-        <p>Position</p>
-        <p>Salary</p>
+        <NoteMainSections>
+          <p>Company:</p>
+          <p>{note.companyName}</p>
+        </NoteMainSections>
+
+        <NoteMainSections>
+          <p>Position:</p>
+          <p>{note.position}</p>
+        </NoteMainSections>
+
+        <NoteMainSections>
+          <p>Salary:</p>
+          <p>${note.salary}</p>
+        </NoteMainSections>
         {/* NOTE: potentially, no need for user here */}
-        <p>??user</p>
-        <p>email</p>
+        {/* <p>??user: {note.user}</p>
+        <p>email: {note.email}</p> */}
       </NoteMainContent>
-      <NoteFooter>Applied On: Date</NoteFooter>
+      <NoteFooter>
+        {note.appliedOnDate.toLocaleDateString("en-UK", {
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric",
+        })}
+      </NoteFooter>
     </StyledNote>
   );
 }
