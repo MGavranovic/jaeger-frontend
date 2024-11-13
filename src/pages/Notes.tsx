@@ -5,6 +5,8 @@ import { useState } from "react";
 import Heading from "../ui/Heading";
 import HeadingContainer from "../ui/HeadingContainer";
 import Button from "../ui/Button";
+import Modal from "../ui/Modal";
+import AddNoteForm from "../components/notes/AddNoteForm";
 
 interface NoteProps {
   color: string;
@@ -58,17 +60,26 @@ The problem with 2) is readability and it seems counterintuitive
 function Notes() {
   // NOTE: I know this generates a new set of data on every render but this is just a temp solution for testing
   const [notes, setNotes] = useState<NoteDetails[]>(getNotes());
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
 
   const notesByStatus = notes.reduce((acc, note) => {
     (acc[note.applicationStatus] ||= []).push(note);
     return acc;
   }, {} as Record<ApplicationStatus, NoteDetails[]>);
 
+  function handleCloseModal() {
+    setModalOpen(false);
+  }
+
+  function handleAddNote() {
+    setModalOpen(true);
+  }
+
   return (
     <>
       <HeadingContainer>
         <Heading as="h1">Notes</Heading>
-        <Button size="large" btnType="main">
+        <Button size="large" btnType="main" onClick={handleAddNote}>
           Add Note
         </Button>
       </HeadingContainer>
@@ -110,6 +121,11 @@ function Notes() {
             <Note key={note.id} note={note} />
           ))}
         </NoteContainer>
+        {modalOpen && (
+          <Modal onClose={handleCloseModal}>
+            <AddNoteForm />
+          </Modal>
+        )}
       </NotesContainer>
     </>
   );
