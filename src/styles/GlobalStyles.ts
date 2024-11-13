@@ -26,11 +26,17 @@ const GlobalStyles = styled.createGlobalStyle`
     --color-amber-900: #78350f;
     --color-amber-950: #451a03;
 
+    --color-lime-50: #f7fee7;
     --color-lime-100: #ecfccb;
+    --color-lime-200: #d9f99d;
     --color-lime-300: #bef264;
+    --color-lime-400: #a3e635;
     --color-lime-500: #84cc16;
     --color-lime-600: #65a30d;
     --color-lime-700: #4d7c0f;
+    --color-lime-800: #166534;
+    --color-lime-900: #14532d;
+    --color-lime-950: #052e16;
 
     --color-green-100: #dcfce7;
     --color-green-700: #15803d;
@@ -76,6 +82,19 @@ const GlobalStyles = styled.createGlobalStyle`
 
   ul {
     list-style: none;
+  }
+
+  button {
+    font: inherit;
+    color: inherit;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  button:focus {
+    outline: 2px solid var(--color-lime-700);
   }
 `;
 

@@ -2,16 +2,25 @@ import styled from "styled-components";
 import Note from "../components/notes/Note";
 import getNotes, { ApplicationStatus, NoteDetails } from "../data/data";
 import { useState } from "react";
+import Heading from "../ui/Heading";
+import HeadingContainer from "../ui/HeadingContainer";
+import Button from "../ui/Button";
 
 interface NoteProps {
   color: string;
 }
 
+export interface ButtonProps {
+  size: "small" | "medium" | "large";
+  btnType: "main" | "cancel";
+}
+
 const NotesContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  height: 100%;
+  height: 95%;
   gap: 1rem;
+  margin-top: 1rem;
 `;
 
 const NoteContainer = styled.div`
@@ -56,44 +65,53 @@ function Notes() {
   }, {} as Record<ApplicationStatus, NoteDetails[]>);
 
   return (
-    <NotesContainer>
-      <NoteContainer>
-        <StyledHeading>Applied</StyledHeading>
+    <>
+      <HeadingContainer>
+        <Heading as="h1">Notes</Heading>
+        <Button size="large" btnType="main">
+          Add Note
+        </Button>
+      </HeadingContainer>
 
-        {/*// NOTE: working on notes */}
-        {notesByStatus["applied"]?.map((note) => (
-          <Note key={note.id} note={note} />
-        ))}
-        {/*// NOTE:*/}
-      </NoteContainer>
+      <NotesContainer>
+        <NoteContainer>
+          <StyledHeading>Applied</StyledHeading>
 
-      <NoteContainer>
-        <StyledHeading>Got response</StyledHeading>
-        {notesByStatus["got-response"]?.map((note) => (
-          <Note key={note.id} note={note} />
-        ))}
-      </NoteContainer>
+          {/*// NOTE: working on notes */}
+          {notesByStatus["applied"]?.map((note) => (
+            <Note key={note.id} note={note} />
+          ))}
+          {/*// NOTE:*/}
+        </NoteContainer>
 
-      <NoteContainer>
-        <StyledHeading>Interview</StyledHeading>
-        {notesByStatus["interview"]?.map((note) => (
-          <Note key={note.id} note={note} />
-        ))}
-      </NoteContainer>
+        <NoteContainer>
+          <StyledHeading>Got response</StyledHeading>
+          {notesByStatus["got-response"]?.map((note) => (
+            <Note key={note.id} note={note} />
+          ))}
+        </NoteContainer>
 
-      <NoteContainer>
-        <StyledHeading>Offer</StyledHeading>
-        {notesByStatus["offer"]?.map((note) => (
-          <Note key={note.id} note={note} />
-        ))}
-        {notesByStatus["rejected"]?.map((note) => (
-          <Note key={note.id} note={note} />
-        ))}
-        {notesByStatus["accepted"]?.map((note) => (
-          <Note key={note.id} note={note} />
-        ))}
-      </NoteContainer>
-    </NotesContainer>
+        <NoteContainer>
+          <StyledHeading>Interview</StyledHeading>
+          {notesByStatus["interview"]?.map((note) => (
+            <Note key={note.id} note={note} />
+          ))}
+        </NoteContainer>
+
+        <NoteContainer>
+          <StyledHeading>Offer</StyledHeading>
+          {notesByStatus["offer"]?.map((note) => (
+            <Note key={note.id} note={note} />
+          ))}
+          {notesByStatus["rejected"]?.map((note) => (
+            <Note key={note.id} note={note} />
+          ))}
+          {notesByStatus["accepted"]?.map((note) => (
+            <Note key={note.id} note={note} />
+          ))}
+        </NoteContainer>
+      </NotesContainer>
+    </>
   );
 }
 
