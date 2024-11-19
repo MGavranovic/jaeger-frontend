@@ -2,6 +2,8 @@ import { createPortal } from "react-dom";
 import { HiXMark } from "react-icons/hi2";
 import styled from "styled-components";
 import Button from "./Button";
+import HeadingContainer from "./HeadingContainer";
+import Heading from "./Heading";
 
 const StyledModal = styled.div`
   position: fixed;
@@ -25,13 +27,26 @@ const Overlay = styled.div`
   transition: all 0.5s;
 `;
 
+const StyledButton = styled(Button)`
+  border: none;
+  color: var(--color-zinc-800);
+  font-size: 2.2rem;
+`;
+
+const StyledHeadingContainer = styled(HeadingContainer)`
+  margin-bottom: 1rem;
+`;
+
 function Modal({ children, onClose }) {
   return createPortal(
     <Overlay>
       <StyledModal>
-        <Button size="small" btnType="cancel" onClick={onClose}>
-          <HiXMark />
-        </Button>
+        <StyledHeadingContainer>
+          <Heading as="h3">Add Note</Heading>
+          <StyledButton size="small" btnType="cancel" onClick={onClose}>
+            <HiXMark />
+          </StyledButton>
+        </StyledHeadingContainer>
 
         <div>{children}</div>
       </StyledModal>

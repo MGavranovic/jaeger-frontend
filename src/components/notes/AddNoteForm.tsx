@@ -10,8 +10,8 @@ const StyledFrom = styled.form`
 
 const StyledFormSection = styled.div`
   display: flex;
-  flex-direction: rows;
   justify-content: space-between;
+  text-align: center;
   border-bottom: 1px solid var(--color-zinc-300);
 `;
 
@@ -22,6 +22,10 @@ const StyledButtonContainer = styled.div`
   margin: 1rem;
 `;
 
+const StyledInput = styled.input`
+  width: 50%;
+`;
+
 // TODO: form is still in progress
 
 function AddNoteForm() {
@@ -29,16 +33,16 @@ function AddNoteForm() {
     <StyledFrom onSubmit={(e) => e.preventDefault()}>
       <StyledFormSection>
         <label>Company Name:</label>
-        <input type="text" name="company" required />
+        <StyledInput type="text" name="company" required />
       </StyledFormSection>
       <StyledFormSection>
         <label>Position:</label>
-        <input type="text" name="position" required />
+        <StyledInput type="text" name="position" required />
       </StyledFormSection>
       <StyledFormSection>
         {/*  NOTE: add parantheses in case salary is not displayed on the add */}
         <label>Salary ?? add parentheses:</label>
-        <input type="text" name="title" required />
+        <StyledInput type="text" name="title" required />
       </StyledFormSection>
 
       <StyledFormSection>

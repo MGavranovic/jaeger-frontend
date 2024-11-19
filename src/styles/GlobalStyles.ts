@@ -84,7 +84,19 @@ const GlobalStyles = styled.createGlobalStyle`
     list-style: none;
   }
 
-  button {
+  input,
+  textarea,
+  select {
+    font-weight: 300;
+    border: 1px solid var(--color-lime-600);
+    border-radius: var(--border-radius-sm);
+    padding: 0.5rem 1rem;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
     font: inherit;
     color: inherit;
   }
@@ -93,8 +105,12 @@ const GlobalStyles = styled.createGlobalStyle`
     cursor: pointer;
   }
 
-  button:focus {
-    outline: 2px solid var(--color-lime-700);
+  input:focus,
+  button:focus,
+  textarea:focus,
+  select:focus {
+    outline: 2px solid var(--color-lime-600);
+    outline-offset: -1px;
   }
 `;
 
