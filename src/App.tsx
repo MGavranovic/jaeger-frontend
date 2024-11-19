@@ -9,6 +9,7 @@ import UserSettings from "./pages/UserSettings";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import getNotes from "./data/data";
+import getDateTime from "./utils/helpers";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,9 @@ function App() {
   // NOTE: testing dummy data generation
   const notes = getNotes();
   console.log(notes);
+
+  // NOTE: testing helpers
+  getDateTime();
 
   return (
     <>
