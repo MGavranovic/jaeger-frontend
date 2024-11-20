@@ -1,12 +1,14 @@
 import styled from "styled-components";
 import Note from "../components/notes/Note";
-import getNotes, { ApplicationStatus, NoteDetails } from "../data/data";
+import { ApplicationStatus, dummyNotes, NoteDetails } from "../data/data";
 import { useState } from "react";
 import Heading from "../ui/Heading";
 import HeadingContainer from "../ui/HeadingContainer";
 import Button from "../ui/Button";
 import Modal from "../ui/Modal";
 import AddNoteForm from "../components/notes/AddNoteForm";
+import { useNotes } from "../components/notes/useNotes";
+import { useAddNote } from "../components/notes/useAddNote";
 
 interface NoteProps {
   color: string;
@@ -59,7 +61,8 @@ The problem with 2) is readability and it seems counterintuitive
 */
 function Notes() {
   // NOTE: I know this generates a new set of data on every render but this is just a temp solution for testing
-  const [notes, setNotes] = useState<NoteDetails[]>(getNotes());
+  const { notes, isPending } = useNotes();
+  const { createNote, isCreating } = useAddNote();
   const [modalOpen, setModalOpen] = useState<boolean>(false);
 
   const notesByStatus = notes.reduce((acc, note) => {
@@ -74,6 +77,25 @@ function Notes() {
   function handleAddNote() {
     setModalOpen(true);
   }
+
+  function handleSubmit(newNote: Partial<NoteDetails>) {
+    console.log("new note created", newNote);
+    createNote(
+      {
+        ...newNote,
+        id: Math.random().toString(36).substring(2, 9),
+        appliedOnDate: new Date(),
+      } as NoteDetails,
+      {
+        onSuccess: () => {
+          console.log(notes);
+          setModalOpen(false);
+        },
+      }
+    );
+  }
+
+  // TODO: loader component
 
   return (
     <>
@@ -123,7 +145,7 @@ function Notes() {
         </NoteContainer>
         {modalOpen && (
           <Modal onClose={handleCloseModal}>
-            <AddNoteForm />
+            <AddNoteForm onSubmit={handleSubmit} />
           </Modal>
         )}
       </NotesContainer>

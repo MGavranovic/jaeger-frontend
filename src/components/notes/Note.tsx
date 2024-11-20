@@ -63,7 +63,6 @@ p elem as placeholders
 Will be replaced by actual values
 */
 function Note({ note }: NoteProps) {
-  console.log(typeof note.appliedOnDate);
   return (
     <StyledNote>
       <NoteHeader>

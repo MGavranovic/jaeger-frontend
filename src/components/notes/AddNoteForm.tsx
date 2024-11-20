@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import Button from "../../ui/Button";
+import { ApplicationStatus, NoteDetails } from "../../data/data";
+import { useState } from "react";
 
 const StyledFrom = styled.form`
   display: flex;
@@ -28,9 +30,34 @@ const StyledInput = styled.input`
 
 // TODO: form is still in progress
 
-function AddNoteForm() {
+function AddNoteForm({
+  onSubmit,
+}: {
+  onSubmit: (note: Partial<NoteDetails>) => void;
+}) {
+  const [notes, setNotes] = useState<NoteDetails[]>([]);
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget as HTMLFormElement);
+    const newNote: Partial<NoteDetails> = {
+      companyName: formData.get("company") as string,
+      position: formData.get("position") as string,
+      salary: formData.get("title") as string,
+      applicationStatus: formData.get("applicationStatus") as ApplicationStatus,
+      appliedOnDate: new Date(),
+      id: Math.random().toString(36).substring(2, 9),
+      user: "Test User",
+      email: "test@example.com",
+    };
+
+    setNotes((prev) => [...prev, newNote]);
+    onSubmit(newNote);
+  }
+
   return (
-    <StyledFrom onSubmit={(e) => e.preventDefault()}>
+    <StyledFrom onSubmit={handleSubmit}>
       <StyledFormSection>
         <label>Company Name:</label>
         <StyledInput type="text" name="company" required />
@@ -47,15 +74,13 @@ function AddNoteForm() {
 
       <StyledFormSection>
         <label>Status:</label>
-        <select>
-          <option value="" selected>
-            Applied
-          </option>
-          <option value="">Got response</option>
-          <option value="">Interview</option>
-          <option value="">Offer</option>
-          <option value="">Acceoted</option>
-          <option value="">Rejected</option>
+        <select name="applicationStatus">
+          <option value="applied">Applied</option>
+          <option value="got-response">Got response</option>
+          <option value="interview">Interview</option>
+          <option value="offer">Offer</option>
+          <option value="accepted">Accepted</option>
+          <option value="rejected">Rejected</option>
         </select>
       </StyledFormSection>
 

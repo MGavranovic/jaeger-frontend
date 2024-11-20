@@ -47,6 +47,10 @@ const NotesData: NoteDetails[] = Array.from({ length: 10 }, () => ({
   ]),
 }));
 
+const dummyNotes = getNotes();
+
 export default function getNotes(): NoteDetails[] {
   return NotesData;
 }
+
+export { dummyNotes };
