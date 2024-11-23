@@ -17,13 +17,6 @@ const StyledLoginForm = styled.form`
   width: 50vw;
 `;
 
-const StyledInput = styled.label`
-  width: 38rem;
-  height: 3.2rem;
-  border: 1px solid var(--color-lime-500);
-  border-radius: var(--border-radius-tiny);
-`;
-
 const BtnContainer = styled.div`
   margin-top: 1.5rem;
 `;
