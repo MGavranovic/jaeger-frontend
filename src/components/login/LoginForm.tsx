@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Button from "../../ui/Button";
 
 const LoginSectionContainer = styled.div`
   display: grid;
@@ -17,19 +18,14 @@ const StyledLoginForm = styled.form`
 `;
 
 const StyledInput = styled.label`
-  width: 30rem;
-  height: 20px;
-  border: 2px solid black;
-  background-color: white;
+  width: 38rem;
+  height: 3.2rem;
+  border: 1px solid var(--color-lime-500);
+  border-radius: var(--border-radius-tiny);
 `;
 
-const StyledButton = styled.button`
-  padding: 10px 30px;
-  border-radius: 5px;
-  background-color: var(--color-lime-100);
-  border: 2px solid var(--color-lime-300);
-  color: var(--color-zinc-900);
-  margin-top: 10px;
+const BtnContainer = styled.div`
+  margin-top: 1.5rem;
 `;
 
 function LoginForm() {
@@ -38,10 +34,14 @@ function LoginForm() {
       <h1>Jaeger</h1>
       <StyledLoginForm>
         <label htmlFor="email">Email</label>
-        <StyledInput />
+        <input type="text" />
         <label htmlFor="password">Password</label>
-        <StyledInput />
-        <StyledButton>Login</StyledButton>
+        <input type="text" />
+        <BtnContainer>
+          <Button size="medium" btnType="main">
+            Login
+          </Button>
+        </BtnContainer>
       </StyledLoginForm>
     </LoginSectionContainer>
   );
