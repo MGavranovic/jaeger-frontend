@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Note from "../components/notes/Note";
-import { ApplicationStatus, dummyNotes, NoteDetails } from "../data/data";
+import { ApplicationStatus, NoteDetails } from "../data/data";
 import { useState } from "react";
 import Heading from "../ui/Heading";
 import HeadingContainer from "../ui/HeadingContainer";
@@ -9,10 +9,8 @@ import Modal from "../ui/Modal";
 import AddNoteForm from "../components/notes/AddNoteForm";
 import { useNotes } from "../components/notes/useNotes";
 import { useAddNote } from "../components/notes/useAddNote";
-
-interface NoteProps {
-  color: string;
-}
+import { useNavigate } from "react-router-dom";
+import Menu from "../ui/Menu";
 
 export interface ButtonProps {
   size: "small" | "medium" | "large";
@@ -65,6 +63,10 @@ function Notes() {
   const { createNote, isCreating } = useAddNote();
   const [modalOpen, setModalOpen] = useState<boolean>(false);
 
+  const [menuForNote, setMenuForNote] = useState<string | null>(null);
+
+  const navigate = useNavigate();
+
   const notesByStatus = notes.reduce((acc, note) => {
     (acc[note.applicationStatus] ||= []).push(note);
     return acc;
@@ -95,7 +97,17 @@ function Notes() {
     );
   }
 
+  function handleOpenMenu(noteId: string) {
+    setMenuForNote(noteId);
+  }
+
+  function handleCloseMenu() {
+    setMenuForNote(null);
+  }
+
   // TODO: loader component
+  // TODO: create a menu button and a menu for note
+  // TODO: create a details component for note
 
   return (
     <>
@@ -109,38 +121,101 @@ function Notes() {
       <NotesContainer>
         <NoteContainer>
           <StyledHeading>Applied</StyledHeading>
-
-          {/*// NOTE: working on notes */}
           {notesByStatus["applied"]?.map((note) => (
-            <Note key={note.id} note={note} />
+            <div style={{ position: "relative" }} key={note.id}>
+              <Note
+                key={note.id}
+                note={note}
+                onClick={() =>
+                  menuForNote === note.id
+                    ? handleCloseMenu()
+                    : handleOpenMenu(note.id)
+                }
+              />
+              {menuForNote === note.id && <Menu note={note} />}
+            </div>
           ))}
-          {/*// NOTE:*/}
         </NoteContainer>
 
         <NoteContainer>
           <StyledHeading>Got response</StyledHeading>
           {notesByStatus["got-response"]?.map((note) => (
-            <Note key={note.id} note={note} />
+            <div style={{ position: "relative" }} key={note.id}>
+              <Note
+                key={note.id}
+                note={note}
+                onClick={() =>
+                  menuForNote === note.id
+                    ? handleCloseMenu()
+                    : handleOpenMenu(note.id)
+                }
+              />
+              {menuForNote === note.id && <Menu note={note} />}
+            </div>
           ))}
         </NoteContainer>
 
         <NoteContainer>
           <StyledHeading>Interview</StyledHeading>
           {notesByStatus["interview"]?.map((note) => (
-            <Note key={note.id} note={note} />
+            <div style={{ position: "relative" }} key={note.id}>
+              <Note
+                key={note.id}
+                note={note}
+                onClick={() =>
+                  menuForNote === note.id
+                    ? handleCloseMenu()
+                    : handleOpenMenu(note.id)
+                }
+              />
+              {menuForNote === note.id && <Menu note={note} />}
+            </div>
           ))}
         </NoteContainer>
 
         <NoteContainer>
           <StyledHeading>Offer</StyledHeading>
           {notesByStatus["offer"]?.map((note) => (
-            <Note key={note.id} note={note} />
+            <div style={{ position: "relative" }} key={note.id}>
+              <Note
+                key={note.id}
+                note={note}
+                onClick={() =>
+                  menuForNote === note.id
+                    ? handleCloseMenu()
+                    : handleOpenMenu(note.id)
+                }
+              />
+              {menuForNote === note.id && <Menu note={note} />}
+            </div>
           ))}
           {notesByStatus["rejected"]?.map((note) => (
-            <Note key={note.id} note={note} />
+            <div style={{ position: "relative" }} key={note.id}>
+              <Note
+                key={note.id}
+                note={note}
+                onClick={() =>
+                  menuForNote === note.id
+                    ? handleCloseMenu()
+                    : handleOpenMenu(note.id)
+                }
+              />
+              {menuForNote === note.id && <Menu note={note} />}
+            </div>
           ))}
           {notesByStatus["accepted"]?.map((note) => (
-            <Note key={note.id} note={note} />
+            <div style={{ position: "relative" }} key={note.id}>
+              <Note
+                key={note.id}
+                note={note}
+                onClick={() =>
+                  menuForNote === note.id
+                    ? handleCloseMenu()
+                    : handleOpenMenu(note.id)
+                }
+              />
+              {menuForNote === note.id && <Menu note={note} />}
+            </div>
           ))}
         </NoteContainer>
         {modalOpen && (

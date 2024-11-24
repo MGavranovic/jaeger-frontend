@@ -3,6 +3,7 @@ import { ApplicationStatus, NoteDetails } from "../../data/data";
 
 interface NoteProps {
   note: NoteDetails;
+  onClick?: () => void;
 }
 
 const StyledNote = styled.div`
@@ -62,9 +63,9 @@ const StyledStatus = styled.p<{ applicationStatus: ApplicationStatus }>`
 p elem as placeholders
 Will be replaced by actual values
 */
-function Note({ note }: NoteProps) {
+function Note({ note, onClick }: NoteProps) {
   return (
-    <StyledNote>
+    <StyledNote onClick={onClick}>
       <NoteHeader>
         <p>Note id#</p>
         <StyledStatus applicationStatus={note.applicationStatus}>
