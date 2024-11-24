@@ -12,6 +12,7 @@ import getNotes from "./data/data";
 import getDateTime from "./utils/helpers";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import NoteDetails from "./pages/NoteDetails";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -28,7 +29,7 @@ const router = createBrowserRouter([
     children: [
       { path: "/dashboard", element: <Dashboard /> },
       { path: "/notes", element: <Notes /> },
-      { path: "/notes/:noteId" },
+      { path: "/notes/:noteId", element: <NoteDetails /> },
       { path: "/user", element: <UserSettings /> },
     ],
   },

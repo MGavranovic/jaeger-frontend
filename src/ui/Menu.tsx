@@ -33,7 +33,7 @@ function Menu({ note }: MenuProps) {
       <MenuButton
         size="small"
         btnType="main"
-        onClick={() => navigate(`/notes/${note.id}`)}
+        onClick={() => navigate(`/notes/${note.id}`, { state: { note } })}
       >
         Details
       </MenuButton>
