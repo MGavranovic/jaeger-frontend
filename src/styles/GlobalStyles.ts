@@ -41,6 +41,7 @@ const GlobalStyles = styled.createGlobalStyle`
     --color-green-100: #dcfce7;
     --color-green-700: #15803d;
     --color-red-100: #fee2e2;
+    --color-red-600: #dc2626;
     --color-red-700: #b91c1c;
 
     --color-cyan-100: #cffafe;

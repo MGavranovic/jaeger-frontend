@@ -14,6 +14,7 @@ import {
   HiIdentification,
 } from "react-icons/hi2";
 import { HiOfficeBuilding } from "react-icons/hi";
+import Button from "../ui/Button";
 
 const StyledContainer = styled.div`
   display: flex;
@@ -25,11 +26,13 @@ const StyledContainer = styled.div`
 
 const StyledDetailsContainer = styled.div`
   padding: 3rem;
-  height: 75vh;
+  height: 100%;
   overflow: scroll;
   scrollbar-width: none;
   background-color: white;
   font-size: 2rem;
+  border-bottom-left-radius: var(--border-radius-lg);
+  border-bottom-right-radius: var(--border-radius-lg);
 `;
 
 const StyledDetailsSectionsContainer = styled.div`
@@ -82,6 +85,16 @@ const StyledHeadingStatus = styled(Heading)<{
   padding: 1rem;
   border-radius: 10rem;
   border: 1px solid transparent;
+`;
+
+const StyledBtnContainer = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+`;
+
+const StyledBtn = styled(Button)`
+  margin-right: 1rem;
 `;
 
 function NoteDetails() {
@@ -173,6 +186,11 @@ function NoteDetails() {
           </StyledText>
         </StyledDetailsSectionsContainer>
       </StyledDetailsContainer>
+      <StyledBtnContainer>
+        <StyledBtn>Edit</StyledBtn>
+        <StyledBtn btnType="delete">Delete</StyledBtn>
+        <StyledBtn btnType="cancel">Back</StyledBtn>
+      </StyledBtnContainer>
     </StyledContainer>
   );
 }

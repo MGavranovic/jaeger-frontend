@@ -38,6 +38,25 @@ const btnTypes = {
     &:hover {
       background-color: var(--color-zinc-100);
     }
+
+    &:focus {
+      outline: 2px solid var(--color-zinc-400);
+      outline-offset: -2px;
+    }
+  `,
+  delete: css`
+    color: var(--color-zinc-100);
+    background: var(--color-red-600);
+    border: 1px solid var(--color-red-700);
+
+    &:hover {
+      background-color: var(--color-red-700);
+    }
+
+    &:focus {
+      outline: 2px solid var(--color-red-600);
+      outline-offset: -2px;
+    }
   `,
 };
 
