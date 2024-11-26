@@ -5,6 +5,7 @@ import { NoteDetails } from "../data/data";
 
 interface MenuProps {
   note: NoteDetails;
+  handleCloseMenu: () => null;
 }
 
 const StyledMenu = styled.div`
@@ -25,7 +26,7 @@ const MenuButton = styled(Button)`
   width: 100%;
 `;
 
-function Menu({ note }: MenuProps) {
+function Menu({ note, handleCloseMenu }: MenuProps) {
   const navigate = useNavigate();
 
   return (
@@ -37,8 +38,11 @@ function Menu({ note }: MenuProps) {
       >
         Details
       </MenuButton>
-      <MenuButton size="small" btnType="cancel">
+      <MenuButton size="small" btnType="delete">
         Delete
+      </MenuButton>
+      <MenuButton size="small" btnType="cancel" onClick={handleCloseMenu}>
+        Close
       </MenuButton>
     </StyledMenu>
   );

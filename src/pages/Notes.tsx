@@ -14,7 +14,7 @@ import Menu from "../ui/Menu";
 
 export interface ButtonProps {
   size: "small" | "medium" | "large";
-  btnType: "main" | "cancel";
+  btnType: "main" | "cancel" | "delete";
 }
 
 const NotesContainer = styled.div`
@@ -97,11 +97,11 @@ function Notes() {
     );
   }
 
-  function handleOpenMenu(noteId: string) {
+  function handleOpenMenu(noteId: string): void {
     setMenuForNote(noteId);
   }
 
-  function handleCloseMenu() {
+  function handleCloseMenu(): void {
     setMenuForNote(null);
   }
 
@@ -132,7 +132,9 @@ function Notes() {
                     : handleOpenMenu(note.id)
                 }
               />
-              {menuForNote === note.id && <Menu note={note} />}
+              {menuForNote === note.id && (
+                <Menu note={note} handleCloseMenu={handleCloseMenu} />
+              )}
             </div>
           ))}
         </NoteContainer>
@@ -150,7 +152,9 @@ function Notes() {
                     : handleOpenMenu(note.id)
                 }
               />
-              {menuForNote === note.id && <Menu note={note} />}
+              {menuForNote === note.id && (
+                <Menu note={note} handleCloseMenu={handleCloseMenu} />
+              )}
             </div>
           ))}
         </NoteContainer>
@@ -168,7 +172,9 @@ function Notes() {
                     : handleOpenMenu(note.id)
                 }
               />
-              {menuForNote === note.id && <Menu note={note} />}
+              {menuForNote === note.id && (
+                <Menu note={note} handleCloseMenu={handleCloseMenu} />
+              )}
             </div>
           ))}
         </NoteContainer>
@@ -186,7 +192,9 @@ function Notes() {
                     : handleOpenMenu(note.id)
                 }
               />
-              {menuForNote === note.id && <Menu note={note} />}
+              {menuForNote === note.id && (
+                <Menu note={note} handleCloseMenu={handleCloseMenu} />
+              )}
             </div>
           ))}
           {notesByStatus["rejected"]?.map((note) => (
@@ -200,7 +208,9 @@ function Notes() {
                     : handleOpenMenu(note.id)
                 }
               />
-              {menuForNote === note.id && <Menu note={note} />}
+              {menuForNote === note.id && (
+                <Menu note={note} handleCloseMenu={handleCloseMenu} />
+              )}
             </div>
           ))}
           {notesByStatus["accepted"]?.map((note) => (
@@ -214,7 +224,9 @@ function Notes() {
                     : handleOpenMenu(note.id)
                 }
               />
-              {menuForNote === note.id && <Menu note={note} />}
+              {menuForNote === note.id && (
+                <Menu note={note} handleCloseMenu={handleCloseMenu} />
+              )}
             </div>
           ))}
         </NoteContainer>

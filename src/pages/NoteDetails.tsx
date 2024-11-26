@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   ApplicationStatus,
   NoteDetails as NoteDetailsType,
@@ -98,6 +98,7 @@ const StyledBtn = styled(Button)`
 `;
 
 function NoteDetails() {
+  const navigate = useNavigate();
   const location = useLocation();
   const note = location.state?.note as NoteDetailsType;
   return (
@@ -189,7 +190,9 @@ function NoteDetails() {
       <StyledBtnContainer>
         <StyledBtn>Edit</StyledBtn>
         <StyledBtn btnType="delete">Delete</StyledBtn>
-        <StyledBtn btnType="cancel">Back</StyledBtn>
+        <StyledBtn btnType="cancel" onClick={() => navigate(-1)}>
+          Back
+        </StyledBtn>
       </StyledBtnContainer>
     </StyledContainer>
   );
