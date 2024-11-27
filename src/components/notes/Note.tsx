@@ -45,15 +45,17 @@ const StyledStatus = styled.p<{ applicationStatus: ApplicationStatus }>`
   ${({ applicationStatus }) => `
     background-color: ${
       {
-        applied: "var(--color-zinc-500)",
-        "got-response": "var(--color-amber-300)",
-        interview: "var(--color-cyan-700)",
-        offer: "var(--color-lime-500)",
-        rejected: "var(--color-red-700)",
-        accepted: "var(--color-lime-700)",
+        applied: "var(--applied)",
+        "got-response": "var(--got-response)",
+        interview: "var(--interview)",
+        offer: "var(--offer)",
+        rejected: "var(--rejected)",
+        accepted: "var(--accepted)",
       }[applicationStatus] || "var(--color-zinc-400)"
     };
   `}
+  color: white;
+  font-weight: 500;
   padding: 0 10px;
   border-radius: var(--border-radius-lg);
 `;

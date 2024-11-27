@@ -51,6 +51,13 @@ const GlobalStyles = styled.createGlobalStyle`
     --border-radius-sm: 5px;
     --border-radius-md: 7px;
     --border-radius-lg: 9px;
+
+    --applied: #f59e0b;
+    --got-response: #71717a;
+    --interview: #06b6d4;
+    --offer: #d946ef;
+    --rejected: #ef4444;
+    --accepted: #84cc16;
   }
 
   *,

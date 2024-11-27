@@ -106,8 +106,6 @@ function Notes() {
   }
 
   // TODO: loader component
-  // TODO: create a menu button and a menu for note
-  // TODO: create a details component for note
 
   return (
     <>
