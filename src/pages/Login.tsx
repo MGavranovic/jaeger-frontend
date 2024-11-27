@@ -13,7 +13,7 @@ function Login() {
   return (
     <LoginLayout>
       <LoginForm />
-      <LoginAppDescription>Section</LoginAppDescription>
+      <LoginAppDescription />
     </LoginLayout>
   );
 }
