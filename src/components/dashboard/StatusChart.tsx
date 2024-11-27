@@ -110,14 +110,14 @@ function StatusChart() {
   return (
     <ChartBox>
       <Heading as="h2">Statuses summary</Heading>
-      <ResponsiveContainer width="100%" height={240}>
+      <ResponsiveContainer width="100%" height={330}>
         <PieChart>
           <Pie
             data={data}
             nameKey="status"
             dataKey="value"
-            innerRadius={70}
-            outerRadius={110}
+            innerRadius={80}
+            outerRadius={120}
             cx="40%"
             cy="50%"
           >

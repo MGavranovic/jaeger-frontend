@@ -1,4 +1,14 @@
 import styled from "styled-components";
+import { useNotes } from "../notes/useNotes";
+import Heading from "../../ui/Heading";
+import {
+  AreaChart,
+  CartesianAxis,
+  CartesianGrid,
+  ResponsiveContainer,
+  XAxis,
+  YAxis,
+} from "recharts";
 
 const ChartBox = styled.div`
   grid-column: 1/-1;
@@ -19,7 +29,26 @@ const ChartBox = styled.div`
 `;
 
 function ApplicationsChart() {
-  return <ChartBox>Applications chart</ChartBox>;
+  const { notes } = useNotes();
+  console.log("Note from the Apps Chart", notes);
+  return (
+    <ChartBox>
+      <Heading as="h2">Applications chart</Heading>
+
+      <ResponsiveContainer height={300} width="100%">
+        <AreaChart data={notes}>
+          <XAxis
+            dataKey="label"
+            tick={{ stroke: "red" }}
+            tickLine={{ fill: "blue" }}
+          />
+          <YAxis />
+          <CartesianGrid strokeDasharray="5" />
+          {/* <Area /> */}
+        </AreaChart>
+      </ResponsiveContainer>
+    </ChartBox>
+  );
 }
 
 export default ApplicationsChart;
