@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import StatusChart from "./StatusChart";
+import StatsChart from "./StatsChart";
 import ApplicationsChart from "./ApplicationsChart";
 
 const StyledDashboardContainer = styled.div`
@@ -11,13 +12,15 @@ const StyledDashboardContainer = styled.div`
   padding: 3.2rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
 `;
 
 function DashboardContainer() {
   return (
     <StyledDashboardContainer>
-      <ApplicationsChart />
+      <StatsChart />
       <StatusChart />
+      <ApplicationsChart />
     </StyledDashboardContainer>
   );
 }

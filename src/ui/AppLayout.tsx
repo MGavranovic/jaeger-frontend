@@ -14,7 +14,8 @@ const StyledAppLayout = styled.div<{ collapsed: boolean }>`
 const Main = styled.main`
   background-color: var(--color-zinc-50);
   padding: 3rem;
-  overflow: hidden;
+  overflow: scroll;
+  scrollbar-width: none;
 `;
 
 const Container = styled.div`
