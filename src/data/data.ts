@@ -17,6 +17,7 @@ export interface NoteDetails {
   salary: string;
   appliedOnDate: Date;
   applicationStatus: ApplicationStatus;
+  color?: string | undefined;
 }
 
 // NOTE: keep these comments for the future as they will be needed

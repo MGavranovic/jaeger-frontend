@@ -5,7 +5,7 @@ import { NoteDetails } from "../data/data";
 
 interface MenuProps {
   note: NoteDetails;
-  handleCloseMenu: () => null;
+  handleCloseMenu: () => void;
 }
 
 const StyledMenu = styled.div`
