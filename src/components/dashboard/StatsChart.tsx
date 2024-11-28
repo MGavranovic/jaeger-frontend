@@ -16,7 +16,7 @@ export type IconProps = {
 const StyledStatsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+
   background-color: white;
   border: 1px solid var(--color-zinc-100);
   border-radius: var(--border-radius-md);
@@ -24,11 +24,7 @@ const StyledStatsContainer = styled.div`
   padding: 2.4rem 3.2rem;
 
   & > *:first-child {
-    margin-bottom: 1.6rem;
-  }
-
-  & .recharts-pie-label-text {
-    font-weight: 600;
+    margin-bottom: 2.6rem;
   }
 `;
 
@@ -37,14 +33,18 @@ const StyledStatContainer = styled.div`
   border: 1px solid var(--color-zinc-300);
   border-radius: var(--border-radius-md);
   padding: 1rem;
+  width: 80%;
+  margin: auto;
 `;
 
 const StyledStat = styled.div`
-  color: var(--color-zinc-500);
   padding-left: 2rem;
+  padding-top: 0.6rem;
 `;
 
-const StyledStatDesc = styled.p``;
+const StyledStatDesc = styled.p`
+  color: var(--color-zinc-500);
+`;
 
 const StyledStatNum = styled.p`
   color: var(--color-zinc-900);
