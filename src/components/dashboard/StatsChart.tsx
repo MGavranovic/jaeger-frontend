@@ -3,9 +3,10 @@ import styled from "styled-components";
 import { useNotes } from "../notes/useNotes";
 
 import Heading from "../../ui/Heading";
-import { HiDocumentText } from "react-icons/hi2";
+import { HiDocumentText, HiFaceFrown } from "react-icons/hi2";
 import { ReactElement } from "react";
 import StatIcon from "./StatIcon";
+import { MdCelebration } from "react-icons/md";
 
 export type IconProps = {
   color: string;
@@ -67,7 +68,7 @@ function StatsChart() {
 
       <StyledStatContainer>
         <StatIcon color="red">
-          <HiDocumentText />
+          <HiFaceFrown />
         </StatIcon>
         <StyledStat>
           <StyledStatDesc>Number of rejections</StyledStatDesc>
@@ -77,7 +78,7 @@ function StatsChart() {
 
       <StyledStatContainer>
         <StatIcon color="lime">
-          <HiDocumentText />
+          <MdCelebration />
         </StatIcon>
         <StyledStat>
           <StyledStatDesc>Number of offers</StyledStatDesc>
