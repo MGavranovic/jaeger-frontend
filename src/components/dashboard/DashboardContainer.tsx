@@ -8,6 +8,7 @@ const StyledDashboardContainer = styled.div`
   border-radius: var(--border-radius-md);
 
   margin-top: 3rem;
+  margin-bottom: 3rem;
   width: 80%;
   padding: 3.2rem;
   display: grid;
