@@ -105,7 +105,6 @@ function StatusChart() {
   const { notes } = useNotes();
 
   const data = prepareData(startData, notes);
-  console.log(data);
 
   return (
     <ChartBox>

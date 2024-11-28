@@ -61,9 +61,6 @@ function StatsChart() {
     (note) => note.applicationStatus === "offer"
   ).length;
 
-  console.log(rejections);
-
-  console.log("Notes data from Stats Chart", notes);
   return (
     <StyledStatsContainer>
       <Heading as="h2">Stats</Heading>
