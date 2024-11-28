@@ -52,6 +52,17 @@ const StyledStatNum = styled.p`
 
 function StatsChart() {
   const { notes } = useNotes();
+
+  const applications: number = notes.length;
+  const rejections: number = notes.filter(
+    (note) => note.applicationStatus === "rejected"
+  ).length;
+  const offers: number = notes.filter(
+    (note) => note.applicationStatus === "offer"
+  ).length;
+
+  console.log(rejections);
+
   console.log("Notes data from Stats Chart", notes);
   return (
     <StyledStatsContainer>
@@ -62,7 +73,7 @@ function StatsChart() {
         </StatIcon>
         <StyledStat>
           <StyledStatDesc>Number of applications</StyledStatDesc>
-          <StyledStatNum>2</StyledStatNum>
+          <StyledStatNum>{applications}</StyledStatNum>
         </StyledStat>
       </StyledStatContainer>
 
@@ -72,7 +83,7 @@ function StatsChart() {
         </StatIcon>
         <StyledStat>
           <StyledStatDesc>Number of rejections</StyledStatDesc>
-          <StyledStatNum>2</StyledStatNum>
+          <StyledStatNum>{rejections}</StyledStatNum>
         </StyledStat>
       </StyledStatContainer>
 
@@ -82,7 +93,7 @@ function StatsChart() {
         </StatIcon>
         <StyledStat>
           <StyledStatDesc>Number of offers</StyledStatDesc>
-          <StyledStatNum>2</StyledStatNum>
+          <StyledStatNum>{offers}</StyledStatNum>
         </StyledStat>
       </StyledStatContainer>
     </StyledStatsContainer>
