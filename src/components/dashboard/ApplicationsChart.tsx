@@ -2,13 +2,22 @@ import styled from "styled-components";
 import { useNotes } from "../notes/useNotes";
 import Heading from "../../ui/Heading";
 import {
+  Area,
   AreaChart,
   CartesianAxis,
   CartesianGrid,
   ResponsiveContainer,
+  Tooltip,
   XAxis,
   YAxis,
 } from "recharts";
+
+type ApplicationChartData = {
+  label: string;
+  totalApplications: number;
+  totalInterviews: number;
+  totalOffers: number;
+};
 
 const ChartBox = styled.div`
   grid-column: 1/-1;
@@ -30,21 +39,87 @@ const ChartBox = styled.div`
 
 function ApplicationsChart() {
   const { notes } = useNotes();
-  console.log("Note from the Apps Chart", notes);
+
+  const colors = {
+    totalApplications: { stroke: "#f59e0b", fill: "#fde047" },
+    totalInterviews: { stroke: "#06b6d4", fill: "#67e8f9" },
+    totalOffers: { stroke: "#d946ef", fill: "#f0abfc" },
+    text: "#27272a",
+    background: "#fff",
+  };
+
+  const today = new Date();
+  const allDates = [];
+  for (let i = 0; i < 30; i++) {
+    const date = new Date(new Date().setDate(today.getDate() - i));
+    allDates.push(date);
+  }
+
+  const data: ApplicationChartData[] = allDates.map((date) => {
+    return {
+      label: `${date.toLocaleString("default", {
+        month: "short",
+        day: "2-digit",
+      })}`,
+      totalApplications: notes.reduce((count, note) => {
+        return note.appliedOnDate.toDateString() === date.toDateString()
+          ? count + 1
+          : count;
+      }, 0),
+      totalInterviews: notes.reduce((count, note) => {
+        return note.appliedOnDate.toDateString() === date.toDateString() &&
+          note.applicationStatus === "interview"
+          ? count + 1
+          : count;
+      }, 0),
+      totalOffers: notes.reduce((count, note) => {
+        return note.appliedOnDate.toDateString() === date.toDateString() &&
+          note.applicationStatus === "offer"
+          ? count + 1
+          : count;
+      }, 0),
+    };
+  });
+
   return (
     <ChartBox>
-      <Heading as="h2">Applications chart</Heading>
+      <Heading as="h2">
+        Applications chart{" "}
+        {allDates[allDates.length - 1].toLocaleString("default", {
+          month: "short",
+          day: "2-digit",
+        })}{" "}
+        &mdash;{" "}
+        {allDates[0].toLocaleString("default", {
+          month: "short",
+          day: "2-digit",
+        })}
+      </Heading>
 
       <ResponsiveContainer height={300} width="100%">
-        <AreaChart data={notes}>
-          <XAxis
-            dataKey="label"
-            tick={{ stroke: "red" }}
-            tickLine={{ fill: "blue" }}
-          />
-          <YAxis />
+        <AreaChart data={data}>
+          <XAxis dataKey="label" tick={{ fill: colors.text }} />
+          <YAxis tick={{ fill: colors.text }} allowDecimals={false} />
           <CartesianGrid strokeDasharray="5" />
-          {/* <Area /> */}
+          <Tooltip contentStyle={{ backgroundColor: colors.background }} />
+          <Area
+            dataKey="totalApplications"
+            type="monotone"
+            stroke={colors.totalApplications.stroke}
+            fill={colors.totalApplications.fill}
+          />
+          <Area
+            dataKey="totalInterviews"
+            type="monotone"
+            stroke={colors.totalInterviews.stroke}
+            fill={colors.totalInterviews.fill}
+          />
+          <Area
+            dataKey="totalOffers"
+            type="monotone"
+            stroke={colors.totalOffers.stroke}
+            fill={colors.totalOffers.fill}
+          />
         </AreaChart>
       </ResponsiveContainer>
     </ChartBox>
