@@ -4,7 +4,6 @@ import Heading from "../../ui/Heading";
 import {
   Area,
   AreaChart,
-  CartesianAxis,
   CartesianGrid,
   ResponsiveContainer,
   Tooltip,
@@ -35,6 +34,10 @@ const ChartBox = styled.div`
   & .recharts-pie-label-text {
     font-weight: 600;
   }
+`;
+
+const StyledHeaderDates = styled.p`
+  color: var(--color-zinc-500);
 `;
 
 function ApplicationsChart() {
@@ -85,15 +88,17 @@ function ApplicationsChart() {
     <ChartBox>
       <Heading as="h2">
         Applications chart{" "}
-        {allDates[allDates.length - 1].toLocaleString("default", {
-          month: "short",
-          day: "2-digit",
-        })}{" "}
-        &mdash;{" "}
-        {allDates[0].toLocaleString("default", {
-          month: "short",
-          day: "2-digit",
-        })}
+        <StyledHeaderDates>
+          {allDates[allDates.length - 1].toLocaleString("default", {
+            month: "short",
+            day: "2-digit",
+          })}{" "}
+          &mdash;{" "}
+          {allDates[0].toLocaleString("default", {
+            month: "short",
+            day: "2-digit",
+          })}
+        </StyledHeaderDates>
       </Heading>
 
       <ResponsiveContainer height={300} width="100%">
