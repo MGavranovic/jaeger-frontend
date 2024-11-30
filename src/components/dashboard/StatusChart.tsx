@@ -19,7 +19,7 @@ interface StartDataItem {
 
 const ChartBox = styled.div`
   background-color: white;
-  border: 1px solid var(--color-zinc-100);
+  border: 1px solid var(--color-zinc-200);
   border-radius: var(--border-radius-md);
 
   padding: 2.4rem 3.2rem;
