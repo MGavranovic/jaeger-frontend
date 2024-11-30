@@ -2,7 +2,7 @@ import styled from "styled-components";
 import UserSettingsForm from "./UserSettingsForm";
 
 const StyledUserSettingsContainer = styled.div`
-  margin: 3rem auto;
+  margin: 10rem auto;
   background-color: white;
   border: 1px solid var(--color-zinc-200);
   border-radius: var(--border-radius-md);
