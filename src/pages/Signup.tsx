@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Button from "../ui/Button";
 
 const Container = styled.div`
   display: flex;
@@ -22,12 +23,8 @@ const EmailAndPw = styled.div`
   width: 30rem;
 `;
 
-const StyledButton = styled.button`
+const StyledButton = styled(Button)`
   padding: 10px 20px;
-  border: 1px solid var(--color-lime-700);
-  border-radius: var(--border-radius-sm);
-  background-color: var(--color-lime-500);
-  color: white;
   margin-top: 1.4rem;
   width: 100%;
 `;
@@ -67,7 +64,9 @@ function Signup() {
           <label htmlFor="">Confirm password</label>
           <Input type="text" />
         </EmailAndPw>
-        <StyledButton>Sign Up</StyledButton>
+        <StyledButton size="large" btnType="main">
+          Sign Up
+        </StyledButton>
       </Form>
     </Container>
   );
