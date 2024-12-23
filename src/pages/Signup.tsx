@@ -64,6 +64,8 @@ function Signup() {
           <Input type="text" />
           <label htmlFor="">Password</label>
           <Input type="text" />
+          <label htmlFor="">Confirm password</label>
+          <Input type="text" />
         </EmailAndPw>
         <StyledButton>Sign Up</StyledButton>
       </Form>
