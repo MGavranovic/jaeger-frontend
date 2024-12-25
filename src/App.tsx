@@ -13,6 +13,7 @@ import getDateTime from "./utils/helpers";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import NoteDetails from "./pages/NoteDetails";
+import { getUsers } from "./services/apiUsers";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -54,6 +55,9 @@ function App() {
 
   // NOTE: testing helpers
   getDateTime();
+
+  // NOTE: testing apiUsers
+  getUsers();
 
   return (
     <QueryClientProvider client={queryClient}>
