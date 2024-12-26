@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useSignup } from "../components/signup/useSignup";
 
 import Button from "../ui/Button";
+import FormError from "../ui/FormError";
 
 export interface SignupData {
   firstName: string;
@@ -60,7 +61,7 @@ const Form = styled.form`
 function Signup() {
   const { signup, isPending } = useSignup();
   const { register, formState, getValues, handleSubmit, reset } = useForm();
-  // const { errors } = formState;
+  const { errors } = formState;
 
   function onSubmit({ firstName, lastName, email, password }: SignupData) {
     signup(
@@ -81,12 +82,14 @@ function Signup() {
             disabled={isPending}
             {...register("firstName", { required: "This field is required" })}
           />
+          <FormError>{errors?.firstName?.message as string}</FormError>
           <label htmlFor="">Last Name</label>
           <Input
             type="text"
             disabled={isPending}
             {...register("lastName", { required: "This field is required" })}
           />
+          <FormError>{errors?.lastName?.message as string}</FormError>
         </NameContainer>
         <EmailAndPw>
           <label htmlFor="">Email</label>
@@ -101,6 +104,7 @@ function Signup() {
               },
             })}
           />
+          <FormError>{errors?.email?.message as string}</FormError>
           <label htmlFor="">Password</label>
           <Input
             type="password"
@@ -114,6 +118,7 @@ function Signup() {
               },
             })}
           />
+          <FormError>{errors?.password?.message as string}</FormError>
           <label htmlFor="">Confirm password</label>
           <Input
             type="password"
@@ -124,6 +129,7 @@ function Signup() {
                 value === getValues("password") || "Passwords need to match",
             })}
           />
+          <FormError>{errors?.passwordConfirm?.message as string}</FormError>
         </EmailAndPw>
         <StyledButton size="large" btnType="main" disabled={isPending}>
           Sign Up
