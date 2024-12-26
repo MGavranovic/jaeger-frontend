@@ -57,7 +57,7 @@ function App() {
   getDateTime();
 
   // NOTE: testing apiUsers
-  getUsers();
+  // getUsers();
 
   return (
     <QueryClientProvider client={queryClient}>

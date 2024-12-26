@@ -1,5 +1,16 @@
 import styled from "styled-components";
+import { useForm } from "react-hook-form";
+
+import { useSignup } from "../components/signup/useSignup";
+
 import Button from "../ui/Button";
+
+export interface SignupData {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+}
 
 const Container = styled.div`
   display: flex;
@@ -44,27 +55,77 @@ const Form = styled.form`
   overflow: hidden;
 `;
 
+// NOTE: regex ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$
+
 function Signup() {
+  const { signup, isPending } = useSignup();
+  const { register, formState, getValues, handleSubmit, reset } = useForm();
+  // const { errors } = formState;
+
+  function onSubmit({ firstName, lastName, email, password }: SignupData) {
+    signup(
+      { firstName, lastName, email, password },
+      { onSettled: () => reset() }
+    );
+  }
+
   return (
     <Container>
       Logo {/* placeholder */}
       <h1>Jaeger</h1>
-      <Form action="">
+      <Form onSubmit={handleSubmit(onSubmit)}>
         <NameContainer>
           <label htmlFor="">First Name</label>
-          <Input type="text" />
+          <Input
+            type="text"
+            disabled={isPending}
+            {...register("firstName", { required: "This field is required" })}
+          />
           <label htmlFor="">Last Name</label>
-          <Input type="text" />
+          <Input
+            type="text"
+            disabled={isPending}
+            {...register("lastName", { required: "This field is required" })}
+          />
         </NameContainer>
         <EmailAndPw>
           <label htmlFor="">Email</label>
-          <Input type="text" />
+          <Input
+            type="email"
+            disabled={isPending}
+            {...register("email", {
+              required: "This field is required",
+              pattern: {
+                value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/,
+                message: "Please provide a valid email address",
+              },
+            })}
+          />
           <label htmlFor="">Password</label>
-          <Input type="text" />
+          <Input
+            type="password"
+            disabled={isPending}
+            {...register("password", {
+              required: "This field is required",
+              minLength: {
+                value: 8,
+                message:
+                  "Password must be at least 8 chars in length, wih 1 uppercase letter and 1 special character",
+              },
+            })}
+          />
           <label htmlFor="">Confirm password</label>
-          <Input type="text" />
+          <Input
+            type="password"
+            disabled={isPending}
+            {...register("passwordConfirm", {
+              required: "This field is required",
+              validate: (value) =>
+                value === getValues("password") || "Passwords need to match",
+            })}
+          />
         </EmailAndPw>
-        <StyledButton size="large" btnType="main">
+        <StyledButton size="large" btnType="main" disabled={isPending}>
           Sign Up
         </StyledButton>
       </Form>
