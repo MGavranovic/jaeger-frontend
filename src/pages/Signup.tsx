@@ -111,8 +111,9 @@ function Signup() {
             disabled={isPending}
             {...register("password", {
               required: "This field is required",
-              minLength: {
-                value: 8,
+              pattern: {
+                value:
+                  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
                 message:
                   "Password must be at least 8 chars in length, wih 1 uppercase letter and 1 special character",
               },
