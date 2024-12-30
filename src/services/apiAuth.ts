@@ -14,6 +14,10 @@ export async function signup({
   const salt = bcrypt.genSaltSync(10);
   const hashedPassword = await bcrypt.hash(password, salt);
 
+  // Testing if data exists // TODO: delete later
+  console.log("Data from signup api");
+  console.log("****", fullName, email, hashedPassword);
+
   // sending data to backend
   const res = await fetch("http://localhost:8080/api/users/signup", {
     method: "POST",
@@ -27,8 +31,4 @@ export async function signup({
   } else {
     console.log("Failed to create user");
   }
-
-  //Testing if data exists
-  console.log("Data from signup api");
-  console.log("****", fullName, email, hashedPassword);
 }
