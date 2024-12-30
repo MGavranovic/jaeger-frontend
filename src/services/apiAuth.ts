@@ -8,9 +8,6 @@ export async function signup({
   email,
   password,
 }: SignupData) {
-  //   const res = await fetch("http://localhost:8080/api/users");
-  //   const data = await res.json();
-  //   console.log(data);
   const fullName: string = firstName.concat(" ", lastName);
 
   // hashing the password
@@ -18,6 +15,18 @@ export async function signup({
   const hashedPassword = await bcrypt.hash(password, salt);
 
   // sending data to backend
+  const res = await fetch("http://localhost:8080/api/users/signup", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ fullName, email, password: hashedPassword }),
+  });
+
+  // temp error handling
+  if (res.ok) {
+    console.log("User created successfully");
+  } else {
+    console.log("Failed to create user");
+  }
 
   //Testing if data exists
   console.log("Data from signup api");
