@@ -28,7 +28,9 @@ export async function signup({
   // temp error handling
   if (res.ok) {
     console.log("User created successfully");
+    // TODO: this will have to navigate to the dashboard
   } else {
+    // const error = res.blob
     console.log("Failed to create user");
   }
 }
