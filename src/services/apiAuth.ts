@@ -25,6 +25,21 @@ export async function signup({
     body: JSON.stringify({ fullName, email, password: hashedPassword }),
   });
 
+  try {
+    const resLogin = await fetch(
+      `http://localhost:8080/api/users/login/${encodeURIComponent(email)}`,
+      { method: "GET" }
+    );
+    if (!resLogin.ok) {
+      throw new Error(`HTTP error! Status: ${resLogin.status}`);
+    }
+
+    const data = await resLogin.json();
+    console.log("Data after signup > login", data);
+  } catch (error) {
+    console.error("Error signup > login", error);
+  }
+
   // temp error handling
   if (res.ok) {
     console.log("User created successfully");
