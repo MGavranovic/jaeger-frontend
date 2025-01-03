@@ -7,6 +7,7 @@ const LoginSectionContainer = styled.div`
   align-items: center;
   justify-content: center;
   text-align: center;
+  width: 50vw;
 `;
 
 const StyledLoginForm = styled.form`
@@ -14,7 +15,11 @@ const StyledLoginForm = styled.form`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 50vw;
+  width: 22vw;
+  height: 30vh;
+  border: 1px solid var(--color-zinc-400);
+  border-radius: var(--border-radius-sm);
+  background-color: white;
 `;
 
 const BtnContainer = styled.div`
