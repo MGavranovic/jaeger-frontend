@@ -5,6 +5,7 @@ import { useSignup } from "../components/signup/useSignup";
 
 import Button from "../ui/Button";
 import FormError from "../ui/FormError";
+import SpinnerMini from "../ui/SpinnerMini";
 
 export interface SignupData {
   firstName: string;
@@ -133,7 +134,7 @@ function Signup() {
           <FormError>{errors?.passwordConfirm?.message as string}</FormError>
         </EmailAndPw>
         <StyledButton size="large" btnType="main" disabled={isPending}>
-          Sign Up
+          {isPending ? <SpinnerMini /> : "Sign Up"}
         </StyledButton>
       </Form>
     </Container>
