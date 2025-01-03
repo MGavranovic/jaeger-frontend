@@ -6,6 +6,7 @@ import { useSignup } from "../components/signup/useSignup";
 import Button from "../ui/Button";
 import FormError from "../ui/FormError";
 import SpinnerMini from "../ui/SpinnerMini";
+import { Link } from "react-router-dom";
 
 export interface SignupData {
   firstName: string;
@@ -55,6 +56,16 @@ const Form = styled.form`
   border-radius: var(--border-radius-sm);
   background-color: white;
   overflow: hidden;
+`;
+
+const LoginRedirect = styled.p`
+  font-weight: 500;
+  color: var(--color-zinc-700);
+`;
+
+const LoginRedirectLink = styled(Link)`
+  text-decoration: underline;
+  color: var(--color-amber-700);
 `;
 
 // NOTE: regex ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$
@@ -137,6 +148,10 @@ function Signup() {
           {isPending ? <SpinnerMini /> : "Sign Up"}
         </StyledButton>
       </Form>
+      <LoginRedirect>
+        Already have an account? Login{" "}
+        <LoginRedirectLink to="/login">here!</LoginRedirectLink>
+      </LoginRedirect>
     </Container>
   );
 }

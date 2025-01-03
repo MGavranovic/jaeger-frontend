@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const DescriptionContainer = styled.div`
@@ -11,6 +12,16 @@ const DescriptionContainer = styled.div`
   gap: 1.4rem;
 `;
 
+const DescriptionSignupRedirect = styled.p`
+  font-weight: 500;
+  color: var(--color-zinc-700);
+`;
+
+const DescriptionSignupLink = styled(Link)`
+  text-decoration: underline;
+  color: var(--color-amber-700);
+`;
+
 function LoginAppDescription() {
   return (
     <DescriptionContainer>
@@ -18,6 +29,10 @@ function LoginAppDescription() {
       <p>Misplaced your notes?</p>
       <p>Hunt for it and keep track of the application.</p>
       <p>Keep an eye on potential future opportunities using Jaeger.</p>
+      <DescriptionSignupRedirect>
+        Don't have an account? Signup{" "}
+        <DescriptionSignupLink to="/signup">here!</DescriptionSignupLink>
+      </DescriptionSignupRedirect>
     </DescriptionContainer>
   );
 }
