@@ -26,6 +26,9 @@ export async function signup({
   });
 
   try {
+    // TODO: when getting the user during signup (login should happen on signup) need to check if the user is_authenticated = true
+    // if that's the case, user is to be logged in
+    // else the ProtectedRoute will stop the login from happening
     const resLogin = await fetch(
       `http://localhost:8080/api/users/login/${encodeURIComponent(email)}`,
       { method: "GET" }
