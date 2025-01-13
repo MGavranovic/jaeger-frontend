@@ -8,10 +8,7 @@ export function useSignup() {
 
   const { mutate: signup, isPending } = useMutation({
     mutationFn: signupApi,
-    onSuccess: (newUser) => {
-      console.log("New user successfully created");
-      console.log(newUser);
-      // sending the user data
+    onSuccess: () => {
       navigate("/dashboard");
     },
     onError: (error) => {
