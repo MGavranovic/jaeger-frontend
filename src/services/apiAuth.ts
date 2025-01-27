@@ -28,7 +28,7 @@ export async function signup({
   try {
     const resLogin = await fetch(
       `http://localhost:8080/api/users/login/${encodeURIComponent(email)}`,
-      { method: "GET" }
+      { method: "GET", credentials: "include" }
     );
     if (!resLogin.ok) {
       throw new Error(`HTTP error! Status: ${resLogin.status}`);

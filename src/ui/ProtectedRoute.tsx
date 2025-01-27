@@ -20,14 +20,22 @@ function ProtectedRoute({ children }: ProtectedRouteProps) {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const res = await fetch("http://localhost:8080/api/users/auth", {
+        const res = await fetch("http://localhost:8080/api/users/login/auth", {
           method: "GET",
           credentials: "include",
         });
+        const cookie = document.cookie.match("session-cookie");
+        console.log("Printing all cookies", cookie);
+
+        const authCookie = document.cookie
+          .split(";")
+          .some((item) => item.trim().startsWith("session-cookie="));
+        console.log("Checking for our auth cookie", authCookie);
 
         // DEBUG: cookie not being sent back for some reason
         const text = await res.text();
         console.log("Authorization coming from frontend", res.status, text);
+        console.log("Cookies", res.headers.get("set-cookie"));
 
         if (res.ok) {
           setIsAuthenticated(true);
