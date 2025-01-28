@@ -1,6 +1,6 @@
-import { HiArrowRightStartOnRectangle } from "react-icons/hi2";
 import { RxAvatar } from "react-icons/rx";
 import styled from "styled-components";
+import Logout from "../components/logout/logout";
 
 const SyledHeader = styled.header`
   border-bottom: 1px solid var(--color-zinc-100);
@@ -16,7 +16,7 @@ function Header() {
     <SyledHeader>
       <span>HEADER</span>
       <RxAvatar />
-      <HiArrowRightStartOnRectangle />
+      <Logout />
     </SyledHeader>
   );
 }

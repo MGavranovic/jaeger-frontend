@@ -45,3 +45,20 @@ export async function signup({
     console.log("Failed to create user");
   }
 }
+
+export async function logout() {
+  try {
+    const res = await fetch("http://localhost:8080/api/users/logout", {
+      method: "GET",
+      credentials: "include",
+    });
+
+    if (res.ok) {
+      console.log("User logged out successfully");
+    } else {
+      console.log("Failed to logout user");
+    }
+  } catch (error) {
+    console.error("Error loging out user", error);
+  }
+}
