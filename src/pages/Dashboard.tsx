@@ -8,6 +8,7 @@ const StyledDashboard = styled.div`
 `;
 
 function Dashboard() {
+  console.log("Dashboard mounted");
   return (
     <>
       <Heading as="h1">Dashboard</Heading>

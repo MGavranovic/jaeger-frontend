@@ -1,5 +1,13 @@
 import styled from "styled-components";
 import Button from "../../ui/Button";
+import { useForm } from "react-hook-form";
+import FormError from "../../ui/FormError";
+import { useLogin } from "./useLogin";
+
+export interface LoginData {
+  email: string;
+  password: string;
+}
 
 const LoginSectionContainer = styled.div`
   display: grid;
@@ -27,14 +35,24 @@ const BtnContainer = styled.div`
 `;
 
 function LoginForm() {
+  const { login, isPending } = useLogin();
+  const { register, formState, handleSubmit, reset } = useForm();
+  const { errors } = formState;
+
+  function onSubmit({ email, password }: LoginData): void {
+    login({ email, password }, { onSettled: () => reset() });
+  }
+
   return (
     <LoginSectionContainer>
       <h1>Jaeger</h1>
-      <StyledLoginForm>
+      <StyledLoginForm onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="email">Email</label>
-        <input type="text" />
+        <input type="text" {...register("email")} />
+        <FormError>{errors?.email?.message as string}</FormError>
         <label htmlFor="password">Password</label>
-        <input type="text" />
+        <input type="text" {...register("password")} />
+        <FormError>{errors?.password?.message as string}</FormError>
         <BtnContainer>
           <Button size="medium" btnType="main">
             Login

@@ -1,3 +1,4 @@
+import { LoginData } from "../components/login/LoginForm";
 import { SignupData } from "../pages/Signup";
 import bcrypt from "bcryptjs";
 
@@ -28,7 +29,11 @@ export async function signup({
   try {
     const resLogin = await fetch(
       `http://localhost:8080/api/users/login/${encodeURIComponent(email)}`,
-      { method: "GET", credentials: "include" }
+      {
+        method: "POST",
+        credentials: "include",
+        body: JSON.stringify({ password }),
+      }
     );
     if (!resLogin.ok) {
       throw new Error(`HTTP error! Status: ${resLogin.status}`);
@@ -43,6 +48,29 @@ export async function signup({
   } else {
     // const error = res.blob
     console.log("Failed to create user");
+  }
+}
+
+export async function login({ email, password }: LoginData) {
+  console.log(email, password);
+
+  try {
+    const res = await fetch(
+      `http://localhost:8080/api/users/login/${encodeURIComponent(email)}`,
+      {
+        method: "POST",
+        credentials: "include",
+        body: JSON.stringify({ password }),
+      }
+    );
+
+    if (res.ok) {
+      console.log("User successfully logged in");
+    } else {
+      console.log("Unable to login user");
+    }
+  } catch (error) {
+    console.error(error);
   }
 }
 

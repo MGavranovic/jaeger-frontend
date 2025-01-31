@@ -36,8 +36,9 @@ function ProtectedRoute({ children }: ProtectedRouteProps) {
       }
     };
 
-    checkAuth();
-  }, [setIsAuthenticated]);
+    const timer = setTimeout(checkAuth, 100);
+    return () => clearTimeout(timer);
+  }, []);
 
   if (isAuthenticated === null) {
     return (
