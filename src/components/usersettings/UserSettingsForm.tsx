@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import Button from "../../ui/Button";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
 
 const StyledForm = styled.form`
   padding: 3rem;
@@ -22,11 +24,14 @@ const StyledButtonSections = styled.div`
 `;
 
 function UserSettingsForm() {
+  const user = useSelector((state: RootState) => state.user);
+  console.log(user);
+
   return (
     <StyledForm>
       <StyledFormSection>
         <label htmlFor="">Full name</label>
-        <p>*users full name</p>
+        <p>{user.fullName}</p>
       </StyledFormSection>
       <StyledFormSection>
         <label htmlFor="">New full name</label>
@@ -36,7 +41,7 @@ function UserSettingsForm() {
 
       <StyledFormSection>
         <label htmlFor="">Email address</label>
-        <p>*email address name</p>
+        <p>{user.email}</p>
       </StyledFormSection>
       <StyledFormSection>
         <label htmlFor="">New email address</label>

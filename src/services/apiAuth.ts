@@ -1,6 +1,8 @@
 import { LoginData } from "../components/login/LoginForm";
 import { SignupData } from "../pages/Signup";
 import bcrypt from "bcryptjs";
+import { loginSuccess } from "../store/userSlice";
+import { store } from "../store/store";
 
 // on signup generate id with crypto
 export async function signup({
@@ -66,6 +68,26 @@ export async function login({ email, password }: LoginData) {
 
     if (res.ok) {
       console.log("User successfully logged in");
+      const resLoggedInUser = await fetch(
+        `http://localhost:8080/api/users/current/${encodeURIComponent(email)}`,
+        {
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+      if (!resLoggedInUser.ok) {
+        throw new Error("Failed getting the current user");
+      }
+      const data = await resLoggedInUser.json();
+      console.log(data);
+
+      store.dispatch(
+        loginSuccess({
+          id: data.ID,
+          fullName: data.FullName,
+          email: data.Email,
+        })
+      );
     } else {
       console.log("Unable to login user");
     }

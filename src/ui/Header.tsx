@@ -1,6 +1,8 @@
 import { RxAvatar } from "react-icons/rx";
 import styled from "styled-components";
 import Logout from "../components/logout/logout";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
 
 const SyledHeader = styled.header`
   border-bottom: 1px solid var(--color-zinc-100);
@@ -12,9 +14,13 @@ const SyledHeader = styled.header`
 `;
 
 function Header() {
+  const user = useSelector((state: RootState) => state.user);
+  const firstName = user.fullName?.split(" ").slice(0, 1);
+  console.log("firstName %s", firstName);
+
   return (
     <SyledHeader>
-      <span>HEADER</span>
+      <span>{firstName}</span>
       <RxAvatar />
       <Logout />
     </SyledHeader>
