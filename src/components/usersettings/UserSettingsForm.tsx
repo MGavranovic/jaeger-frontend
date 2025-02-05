@@ -23,6 +23,10 @@ const StyledButtonSections = styled.div`
   justify-content: space-around;
 `;
 
+const StyledP = styled.p`
+  color: var(--color-zinc-700);
+`;
+
 function UserSettingsForm() {
   const user = useSelector((state: RootState) => state.user);
   console.log(user);
@@ -31,7 +35,7 @@ function UserSettingsForm() {
     <StyledForm>
       <StyledFormSection>
         <label htmlFor="">Full name</label>
-        <p>{user.fullName}</p>
+        <StyledP>{user.fullName}</StyledP>
       </StyledFormSection>
       <StyledFormSection>
         <label htmlFor="">New full name</label>
@@ -41,7 +45,7 @@ function UserSettingsForm() {
 
       <StyledFormSection>
         <label htmlFor="">Email address</label>
-        <p>{user.email}</p>
+        <StyledP>{user.email}</StyledP>
       </StyledFormSection>
       <StyledFormSection>
         <label htmlFor="">New email address</label>
