@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Button from "../../ui/Button";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
+import { useForm } from "react-hook-form";
 
 const StyledForm = styled.form`
   padding: 3rem;
@@ -31,6 +32,9 @@ function UserSettingsForm() {
   const user = useSelector((state: RootState) => state.user);
   console.log(user);
 
+  const { register, formState, handleSubmit, reset, getValues } = useForm();
+  const { errors } = formState;
+
   return (
     <StyledForm>
       <StyledFormSection>
@@ -39,7 +43,7 @@ function UserSettingsForm() {
       </StyledFormSection>
       <StyledFormSection>
         <label htmlFor="">New full name</label>
-        <input type="text" name="" id="" />
+        <input type="text" {...register("fullName")} />
         <p>**new users full name</p>
       </StyledFormSection>
 
@@ -49,17 +53,34 @@ function UserSettingsForm() {
       </StyledFormSection>
       <StyledFormSection>
         <label htmlFor="">New email address</label>
-        <input type="text" name="" id="" />
+        <input type="text" {...register("email")} />
         <p>**new email address name</p>
       </StyledFormSection>
 
       <StyledFormSection>
         <label htmlFor="">Change password</label>
-        <input type="text" />
+        <input
+          type="password"
+          {...(register("password"),
+          {
+            pattern: {
+              value:
+                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+              message:
+                "Password must be at least 8 chars in length, wih 1 uppercase letter and 1 special character",
+            },
+          })}
+        />
       </StyledFormSection>
       <StyledFormSection>
         <label htmlFor="">Confirm new password</label>
-        <input type="text" />
+        <input
+          type="password"
+          {...register("passwordConfirm", {
+            validate: (value) =>
+              value === getValues("password") || "Passwords need to match",
+          })}
+        />
       </StyledFormSection>
 
       <StyledButtonSections>
