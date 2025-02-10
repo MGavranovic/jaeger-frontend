@@ -3,6 +3,14 @@ import Button from "../../ui/Button";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import { useForm } from "react-hook-form";
+import { useUserSettings } from "./useUserSettings";
+
+export interface UserData {
+  id: string | null;
+  fullName: string | null;
+  email: string | null;
+  password: string | null;
+}
 
 const StyledForm = styled.form`
   padding: 3rem;
@@ -29,14 +37,25 @@ const StyledP = styled.p`
 `;
 
 function UserSettingsForm() {
-  const user = useSelector((state: RootState) => state.user);
+  const { changeUserSettings, isPending } = useUserSettings();
+  const user = useSelector((state: RootState) => state?.user);
   console.log(user);
 
   const { register, formState, handleSubmit, reset, getValues } = useForm();
   const { errors } = formState;
 
+  function onSubmit({ id = user.id, fullName, email, password }: UserData) {
+    console.log("Submitting the updated user data");
+    changeUserSettings(
+      { id, fullName, email, password },
+      {
+        onSettled: () => reset(),
+      }
+    );
+  }
+
   return (
-    <StyledForm>
+    <StyledForm onSubmit={handleSubmit(onSubmit)}>
       <StyledFormSection>
         <label htmlFor="">Full name</label>
         <StyledP>{user.fullName}</StyledP>
@@ -61,8 +80,7 @@ function UserSettingsForm() {
         <label htmlFor="">Change password</label>
         <input
           type="password"
-          {...(register("password"),
-          {
+          {...register("password", {
             pattern: {
               value:
                 /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
@@ -84,8 +102,10 @@ function UserSettingsForm() {
       </StyledFormSection>
 
       <StyledButtonSections>
-        <Button size="large">Confirm</Button>
-        <Button size="large" btnType="delete">
+        <Button size="large" btnType="main" disabled={isPending}>
+          Confirm
+        </Button>
+        <Button size="large" btnType="delete" disabled={isPending}>
           Cancel
         </Button>
       </StyledButtonSections>
