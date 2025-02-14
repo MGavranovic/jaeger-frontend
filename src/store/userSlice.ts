@@ -20,6 +20,7 @@ const userSlice = createSlice({
       state.id = action.payload.id;
       state.fullName = action.payload.fullName;
       state.email = action.payload.email;
+      // return { ...action.payload };
     },
     logout(state) {
       state.id = null;

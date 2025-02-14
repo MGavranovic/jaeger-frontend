@@ -10,6 +10,7 @@ export interface UserData {
   fullName: string | null;
   email: string | null;
   password: string | null;
+  currentEmail: string | null;
 }
 
 const StyledForm = styled.form`
@@ -39,15 +40,21 @@ const StyledP = styled.p`
 function UserSettingsForm() {
   const { changeUserSettings, isPending } = useUserSettings();
   const user = useSelector((state: RootState) => state?.user);
-  console.log(user);
+  console.log("User dataa in UserSettingsForm", user);
 
   const { register, formState, handleSubmit, reset, getValues } = useForm();
   const { errors } = formState;
 
-  function onSubmit({ id = user.id, fullName, email, password }: UserData) {
+  function onSubmit({
+    id = user.id,
+    fullName,
+    email,
+    password,
+    currentEmail = user.email,
+  }: UserData) {
     console.log("Submitting the updated user data");
     changeUserSettings(
-      { id, fullName, email, password },
+      { id, fullName, email, password, currentEmail },
       {
         onSettled: () => reset(),
       }
