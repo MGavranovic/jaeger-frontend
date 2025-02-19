@@ -14,13 +14,13 @@ const SyledHeader = styled.header`
 `;
 
 function Header() {
-  // const user = useSelector((state: RootState) => state.user);
-  // const firstName = user.fullName?.split(" ").slice(0, 1);
-  // console.log("firstName %s", firstName);
+  const user = useSelector((state: RootState) => state.user);
+  const firstName = user.fullName?.split(" ").slice(0, 1);
+  console.log("firstName %s", firstName);
 
   return (
     <SyledHeader>
-      {/* <span>{firstName}</span> */}
+      <span>{firstName}</span>
       <RxAvatar />
       <Logout />
     </SyledHeader>

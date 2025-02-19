@@ -18,6 +18,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import NoteDetails from "./pages/NoteDetails";
 import ProtectedRoute from "./ui/ProtectedRoute";
+import useFetchCurrentUser from "./hooks/useFetchCurrentUser";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -70,10 +71,14 @@ function App() {
   // NOTE: testing apiUsers
   // getUsers();
 
+  // NOTE: calling hook for user info
+  useFetchCurrentUser();
+
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
       <GlobalStyles />
+
       <RouterProvider router={router} />
     </QueryClientProvider>
   );
