@@ -5,13 +5,13 @@ Later when I get the backend running, this will be fixed
 */
 // TODO: create a dummy array for storing the notes as this approach is genereting new notes every time and overwriting the existing added ones
 
-import { dummyNotes, NoteDetails } from "../data/data";
+import { dummyNotes } from "../data/data";
 
-export function getNotes(): NoteDetails[] {
+export function getNotes() {
   return dummyNotes;
 }
 
-export function addNote(note: NoteDetails): NoteDetails {
+export function addNote(note) {
   dummyNotes.push(note);
   return note;
 }

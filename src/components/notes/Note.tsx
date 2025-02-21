@@ -1,8 +1,9 @@
 import styled from "styled-components";
-import { ApplicationStatus, NoteDetails } from "../../data/data";
+import { ApplicationStatus } from "../../data/data";
+import { Note as NoteType } from "./AddNoteForm";
 
 interface NoteProps {
-  note: NoteDetails;
+  note: NoteType;
   onClick?: () => void;
 }
 
@@ -94,7 +95,7 @@ function Note({ note, onClick }: NoteProps) {
         <p>email: {note.email}</p> */}
       </NoteMainContent>
       <NoteFooter>
-        {note.appliedOnDate.toLocaleDateString("en-UK", {
+        {note.appliedOn?.toLocaleDateString("en-UK", {
           day: "2-digit",
           month: "2-digit",
           year: "numeric",

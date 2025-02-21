@@ -65,18 +65,18 @@ function ApplicationsChart() {
         day: "2-digit",
       })}`,
       totalApplications: notes.reduce((count, note) => {
-        return note.appliedOnDate.toDateString() === date.toDateString()
+        return note.appliedOn?.toDateString() === date.toDateString()
           ? count + 1
           : count;
       }, 0),
       totalInterviews: notes.reduce((count, note) => {
-        return note.appliedOnDate.toDateString() === date.toDateString() &&
+        return note.appliedOn?.toDateString() === date.toDateString() &&
           note.applicationStatus === "interview"
           ? count + 1
           : count;
       }, 0),
       totalOffers: notes.reduce((count, note) => {
-        return note.appliedOnDate.toDateString() === date.toDateString() &&
+        return note.appliedOn?.toDateString() === date.toDateString() &&
           note.applicationStatus === "offer"
           ? count + 1
           : count;

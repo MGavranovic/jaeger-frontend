@@ -1,8 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import {
-  ApplicationStatus,
-  NoteDetails as NoteDetailsType,
-} from "../data/data";
+import { ApplicationStatus } from "../data/data";
 
 import HeadingContainer from "../ui/HeadingContainer";
 import Heading from "../ui/Heading";
@@ -103,7 +100,7 @@ const StyledBtn = styled(Button)`
 function NoteDetails() {
   const navigate = useNavigate();
   const location = useLocation();
-  const note = location.state?.note as NoteDetailsType;
+  const note = location.state?.note;
   return (
     <StyledContainer>
       <StyledHeadingContainer>
@@ -182,7 +179,7 @@ function NoteDetails() {
           <StyledText>Applied on</StyledText>
           <StyledSeparator>&rarr;</StyledSeparator>
           <StyledText>
-            {note.appliedOnDate.toLocaleDateString("en-UK", {
+            {note.appliedOn.toLocaleDateString("en-UK", {
               day: "2-digit",
               month: "2-digit",
               year: "numeric",

@@ -22,7 +22,7 @@ export interface NoteDetails {
 
 // NOTE: keep these comments for the future as they will be needed
 // this will create an array of notes that I need for testing
-const NotesData: NoteDetails[] = Array.from({ length: 10 }, () => ({
+const NotesData = Array.from({ length: 10 }, () => ({
   // this is the ID of the application
   id: faker.string.uuid(),
   // this is currently just a random full name
@@ -36,7 +36,7 @@ const NotesData: NoteDetails[] = Array.from({ length: 10 }, () => ({
   position: faker.person.jobTitle(),
   salary: faker.finance.amount(),
   // will be calculated on saving the note
-  appliedOnDate: faker.date.recent({ days: 10 }),
+  appliedOn: faker.date.recent({ days: 10 }),
   // will change (not final options)
   applicationStatus: faker.helpers.arrayElement([
     "applied",
@@ -50,7 +50,7 @@ const NotesData: NoteDetails[] = Array.from({ length: 10 }, () => ({
 
 const dummyNotes = getNotes();
 
-export default function getNotes(): NoteDetails[] {
+export default function getNotes() {
   return NotesData;
 }
 

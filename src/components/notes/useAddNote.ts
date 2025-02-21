@@ -6,7 +6,8 @@ export function useAddNote() {
 
   const { mutate: createNote, isPending: isCreating } = useMutation({
     mutationFn: addNote,
-    onSuccess: () => {
+    onSuccess: (data) => {
+      console.log("Note data", data);
       queryClient.invalidateQueries({ queryKey: ["notes"] });
     },
     onError: (err) => console.error(err),

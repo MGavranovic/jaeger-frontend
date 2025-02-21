@@ -6,7 +6,7 @@ import Heading from "../ui/Heading";
 import HeadingContainer from "../ui/HeadingContainer";
 import Button from "../ui/Button";
 import Modal from "../ui/Modal";
-import AddNoteForm from "../components/notes/AddNoteForm";
+import AddNoteForm, { Note as NoteType } from "../components/notes/AddNoteForm";
 import { useNotes } from "../components/notes/useNotes";
 import { useAddNote } from "../components/notes/useAddNote";
 import { useNavigate } from "react-router-dom";
@@ -80,14 +80,14 @@ function Notes() {
     setModalOpen(true);
   }
 
-  function handleSubmit(newNote: Partial<NoteDetails>) {
-    console.log("new note created", newNote);
+  function handleSubmit(data) {
+    console.log("new note created", data);
     createNote(
       {
-        ...newNote,
+        ...data,
         id: Math.random().toString(36).substring(2, 9),
-        appliedOnDate: new Date(),
-      } as NoteDetails,
+        appliedOn: new Date(),
+      } as NoteType,
       {
         onSuccess: () => {
           console.log(notes);
@@ -96,6 +96,7 @@ function Notes() {
       }
     );
   }
+  console.log("Notes", notes);
 
   function handleOpenMenu(noteId: string): void {
     setMenuForNote(noteId);

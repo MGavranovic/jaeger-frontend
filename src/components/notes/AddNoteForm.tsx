@@ -1,7 +1,26 @@
 import styled from "styled-components";
 import Button from "../../ui/Button";
-import { ApplicationStatus, NoteDetails } from "../../data/data";
+import { NoteDetails } from "../../data/data";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
+import { useForm } from "react-hook-form";
+import FormError from "../../ui/FormError";
+
+type uuid = string;
+
+export interface Note {
+  id: number;
+  noteId: uuid;
+  companyName: string;
+  position: string;
+  salary: string;
+  applicationStatus: string;
+  appliedOn: Date;
+  updatedAt: Date;
+  description: string;
+  userId: number;
+}
 
 const StyledFrom = styled.form`
   display: flex;
@@ -30,51 +49,37 @@ const StyledInput = styled.input`
 
 // TODO: form is still in progress
 
-function AddNoteForm({
-  onSubmit,
-}: {
-  onSubmit: (note: Partial<NoteDetails>) => void;
-}) {
-  const [notes, setNotes] = useState<NoteDetails[]>([]);
-
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-
-    const formData = new FormData(e.currentTarget as HTMLFormElement);
-    const newNote: Partial<NoteDetails> = {
-      companyName: formData.get("company") as string,
-      position: formData.get("position") as string,
-      salary: formData.get("title") as string,
-      applicationStatus: formData.get("applicationStatus") as ApplicationStatus,
-      appliedOnDate: new Date(),
-      id: Math.random().toString(36).substring(2, 9),
-      user: "Test User",
-      email: "test@example.com",
-    };
-
-    setNotes((prev) => [...prev, newNote]);
-    onSubmit(newNote);
-  }
+function AddNoteForm({ onSubmit }) {
+  const { register, formState, handleSubmit, reset, getValues } = useForm();
+  const { errors } = formState;
+  const user = useSelector((state: RootState) => state?.user);
 
   return (
-    <StyledFrom onSubmit={handleSubmit}>
+    <StyledFrom onSubmit={handleSubmit(onSubmit)}>
       <StyledFormSection>
         <label>Company Name:</label>
-        <StyledInput type="text" name="company" required />
+        <StyledInput
+          type="text"
+          {...register("companyName", { required: "This field is required" })}
+        />
+        {/* <FormError>{errors?.companyName?.message as string}</FormError> */}
       </StyledFormSection>
       <StyledFormSection>
         <label>Position:</label>
-        <StyledInput type="text" name="position" required />
+        <StyledInput
+          type="text"
+          {...register("position", { required: "This field is required" })}
+        />
       </StyledFormSection>
       <StyledFormSection>
         {/*  NOTE: add parantheses in case salary is not displayed on the add */}
         <label>Salary ?? add parentheses:</label>
-        <StyledInput type="text" name="title" required />
+        <StyledInput type="text" {...register("salary")} />
       </StyledFormSection>
 
       <StyledFormSection>
         <label>Status:</label>
-        <select name="applicationStatus">
+        <select {...register("applicationStatus")}>
           <option value="applied">Applied</option>
           <option value="got-response">Got response</option>
           <option value="interview">Interview</option>
@@ -86,7 +91,7 @@ function AddNoteForm({
 
       <StyledFormSection>
         <label>Description:</label>
-        <textarea name="description" required />
+        <textarea {...register("description")} />
       </StyledFormSection>
 
       <StyledButtonContainer>
