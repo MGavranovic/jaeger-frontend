@@ -11,7 +11,55 @@ export function getNotes() {
   return dummyNotes;
 }
 
-export function addNote(note) {
+// can {id, copmany,......}
+export async function addNote(note) {
+  const {
+    id,
+    companyName,
+    position,
+    salary,
+    applicationStatus,
+    appliedOn,
+    description,
+  } = note;
+  console.log("Note in the services", note);
+  console.log("Note id:", note.id);
+  console.log("Note company:", note.companyName);
+  console.log("Note position:", note.position);
+  console.log("Note salary:", note.salary);
+  console.log("Note application:", note.applicationStatus);
+  console.log("Note appliedOn:", note.appliedOn);
+  console.log("Note description:", note.description);
+
   dummyNotes.push(note);
-  return note;
+  const res = await fetch("http://localhost:8080/api/notes/create", {
+    method: "POST",
+    body: JSON.stringify({
+      uuid: id,
+      companyName,
+      position,
+      salary,
+      applicationStatus,
+      appliedOn,
+      description,
+    }),
+  });
+  if (res.ok) {
+    console.log("Note successfully sent to server!");
+  } else {
+    console.error("Failed sending note to server");
+  }
+
+  // return note;
 }
+
+// TODO: structure the json sent to the server since it can't take one big object and decode it properly
+
+/*
+interface Note {
+  appliedOn: Date;
+  updatedAt: Date;
+  description: string;
+  userId: number;
+}
+*/

@@ -95,7 +95,7 @@ function Note({ note, onClick }: NoteProps) {
         <p>email: {note.email}</p> */}
       </NoteMainContent>
       <NoteFooter>
-        {note.appliedOn?.toLocaleDateString("en-UK", {
+        {note.appliedOn?.toLocaleDateString("en-GB", {
           day: "2-digit",
           month: "2-digit",
           year: "numeric",

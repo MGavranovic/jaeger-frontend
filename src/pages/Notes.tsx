@@ -85,8 +85,8 @@ function Notes() {
     createNote(
       {
         ...data,
-        id: Math.random().toString(36).substring(2, 9),
-        appliedOn: new Date(),
+        id: crypto.randomUUID(),
+        appliedOn: new Date(data.appliedOn),
       } as NoteType,
       {
         onSuccess: () => {

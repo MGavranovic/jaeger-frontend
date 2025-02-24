@@ -94,6 +94,11 @@ function AddNoteForm({ onSubmit }) {
         <textarea {...register("description")} />
       </StyledFormSection>
 
+      <StyledFormSection>
+        <label>Applied On:</label>
+        <input type="date" {...register("appliedOn")} />
+      </StyledFormSection>
+
       <StyledButtonContainer>
         <Button size="medium" btnType="main">
           Submit
