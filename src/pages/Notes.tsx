@@ -11,6 +11,8 @@ import { useNotes } from "../components/notes/useNotes";
 import { useAddNote } from "../components/notes/useAddNote";
 import { useNavigate } from "react-router-dom";
 import Menu from "../ui/Menu";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
 
 export interface ButtonProps {
   size: "small" | "medium" | "large";
@@ -61,6 +63,8 @@ function Notes() {
   // NOTE: I know this generates a new set of data on every render but this is just a temp solution for testing
   const { notes, isPending } = useNotes();
   const { createNote, isCreating } = useAddNote();
+  const user = useSelector((state: RootState) => state?.user);
+
   const [modalOpen, setModalOpen] = useState<boolean>(false);
 
   const [menuForNote, setMenuForNote] = useState<string | null>(null);
@@ -87,6 +91,7 @@ function Notes() {
         ...data,
         id: crypto.randomUUID(),
         appliedOn: new Date(data.appliedOn),
+        userId: user?.id,
       } as NoteType,
       {
         onSuccess: () => {

@@ -21,6 +21,7 @@ export async function addNote(note) {
     applicationStatus,
     appliedOn,
     description,
+    userId,
   } = note;
   console.log("Note in the services", note);
   console.log("Note id:", note.id);
@@ -42,6 +43,7 @@ export async function addNote(note) {
       applicationStatus,
       appliedOn,
       description,
+      userId,
     }),
   });
   if (res.ok) {
