@@ -10,6 +10,8 @@ import {
 } from "recharts";
 import { useNotes } from "../notes/useNotes";
 import { NoteDetails } from "../../data/data";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
 
 interface StartDataItem {
   status: string;
@@ -102,7 +104,8 @@ function prepareData(
 }
 
 function StatusChart() {
-  const { notes } = useNotes();
+  const user = useSelector((state: RootState) => state?.user);
+  const { data: notes = [], isLoading } = useNotes(user?.id);
 
   const data = prepareData(startData, notes);
 

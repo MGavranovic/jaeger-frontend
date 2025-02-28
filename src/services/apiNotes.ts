@@ -7,8 +7,21 @@ Later when I get the backend running, this will be fixed
 
 import { dummyNotes } from "../data/data";
 
-export function getNotes() {
-  return dummyNotes;
+export async function getNotes(userId) {
+  const res = await fetch(
+    `http://localhost:8080/api/notes/${encodeURIComponent(userId)}`,
+    {
+      method: "GET",
+    }
+  );
+
+  if (!res.ok) {
+    console.error("Failed retrieveing notes from server");
+  }
+  const data = await res.json();
+  console.log("Notes successfully retrieved!", data);
+
+  return data;
 }
 
 // can {id, copmany,......}

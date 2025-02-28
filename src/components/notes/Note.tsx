@@ -67,6 +67,8 @@ p elem as placeholders
 Will be replaced by actual values
 */
 function Note({ note, onClick }: NoteProps) {
+  const AppliedOn = new Date(note.appliedOn);
+
   return (
     <StyledNote onClick={onClick}>
       <NoteHeader>
@@ -95,7 +97,7 @@ function Note({ note, onClick }: NoteProps) {
         <p>email: {note.email}</p> */}
       </NoteMainContent>
       <NoteFooter>
-        {note.appliedOn?.toLocaleDateString("en-GB", {
+        {AppliedOn?.toLocaleDateString("en-GB", {
           day: "2-digit",
           month: "2-digit",
           year: "numeric",

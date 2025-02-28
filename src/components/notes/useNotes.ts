@@ -1,17 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import { getNotes } from "../../services/apiNotes";
-import { dummyNotes } from "../../data/data";
 
-export function useNotes() {
-  const {
-    isPending,
-    data: notes,
-    error,
-  } = useQuery({
-    queryKey: ["notes"],
-    queryFn: getNotes,
-    initialData: [],
+export function useNotes(userId) {
+  return useQuery({
+    queryKey: ["notes", userId],
+    queryFn: () => getNotes(userId),
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    refetchOnReconnect: false,
   });
-
-  return { isPending, notes, error };
 }

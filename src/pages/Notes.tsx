@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import Menu from "../ui/Menu";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
+import Spinner from "../ui/Spinner";
 
 export interface ButtonProps {
   size: "small" | "medium" | "large";
@@ -61,16 +62,16 @@ The problem with 2) is readability and it seems counterintuitive
 */
 function Notes() {
   // NOTE: I know this generates a new set of data on every render but this is just a temp solution for testing
-  const { notes, isPending } = useNotes();
   const { createNote, isCreating } = useAddNote();
   const user = useSelector((state: RootState) => state?.user);
+  const { data: notes = [], isLoading, error } = useNotes(user?.id);
 
   const [modalOpen, setModalOpen] = useState<boolean>(false);
-
   const [menuForNote, setMenuForNote] = useState<string | null>(null);
 
   const navigate = useNavigate();
 
+  // NOTE: in case this is not working as intended, I can use dummyNotes from getAllNotes
   const notesByStatus = notes.reduce((acc, note) => {
     (acc[note.applicationStatus] ||= []).push(note);
     return acc;
@@ -112,6 +113,19 @@ function Notes() {
   }
 
   // TODO: loader component
+  if (isLoading) {
+    return (
+      <>
+        <Spinner />
+        <p>Loading notes...</p>
+      </>
+    );
+  }
+
+  // TODO: doesnt work
+  if (error) {
+    <p>Failed to retrieve notes</p>;
+  }
 
   return (
     <>

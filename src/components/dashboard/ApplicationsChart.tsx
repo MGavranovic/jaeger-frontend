@@ -10,6 +10,8 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
 
 type ApplicationChartData = {
   label: string;
@@ -41,7 +43,8 @@ const StyledHeaderDates = styled.p`
 `;
 
 function ApplicationsChart() {
-  const { notes } = useNotes();
+  const user = useSelector((state: RootState) => state?.user);
+  const { data: notes = [], isLoading } = useNotes(user?.id);
 
   const colors = {
     totalApplications: { stroke: "#f59e0b", fill: "#fde047" },
@@ -65,19 +68,19 @@ function ApplicationsChart() {
         day: "2-digit",
       })}`,
       totalApplications: notes.reduce((count, note) => {
-        return note.appliedOn?.toDateString() === date.toDateString()
+        return new Date(note.appliedOn)?.toDateString() === date.toDateString()
           ? count + 1
           : count;
       }, 0),
       totalInterviews: notes.reduce((count, note) => {
-        return note.appliedOn?.toDateString() === date.toDateString() &&
-          note.applicationStatus === "interview"
+        return new Date(note.appliedOn)?.toDateString() ===
+          date.toDateString() && note.applicationStatus === "interview"
           ? count + 1
           : count;
       }, 0),
       totalOffers: notes.reduce((count, note) => {
-        return note.appliedOn?.toDateString() === date.toDateString() &&
-          note.applicationStatus === "offer"
+        return new Date(note.appliedOn)?.toDateString() ===
+          date.toDateString() && note.applicationStatus === "offer"
           ? count + 1
           : count;
       }, 0),

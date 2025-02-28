@@ -7,6 +7,8 @@ import { HiDocumentText, HiFaceFrown } from "react-icons/hi2";
 import { ReactElement } from "react";
 import StatIcon from "./StatIcon";
 import { MdCelebration } from "react-icons/md";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
 
 export type IconProps = {
   color: string;
@@ -51,7 +53,8 @@ const StyledStatNum = styled.p`
 `;
 
 function StatsChart() {
-  const { notes } = useNotes();
+  const user = useSelector((state: RootState) => state?.user);
+  const { data: notes = [], isLoading } = useNotes(user?.id);
 
   const applications: number = notes.length;
   const rejections: number = notes.filter(
