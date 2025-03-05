@@ -72,7 +72,7 @@ function Notes() {
   const navigate = useNavigate();
 
   // NOTE: in case this is not working as intended, I can use dummyNotes from getAllNotes
-  const notesByStatus = notes.reduce((acc, note) => {
+  const notesByStatus = notes?.reduce((acc, note) => {
     (acc[note.applicationStatus] ||= []).push(note);
     return acc;
   }, {} as Record<ApplicationStatus, NoteDetails[]>);

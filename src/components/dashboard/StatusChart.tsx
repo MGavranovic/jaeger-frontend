@@ -79,7 +79,7 @@ function prepareData(
   }
 
   const data = notes
-    .reduce((arr, cur) => {
+    ?.reduce((arr, cur) => {
       const status = cur.applicationStatus;
       switch (status) {
         case "applied":
@@ -123,7 +123,7 @@ function StatusChart() {
             cx="40%"
             cy="50%"
           >
-            {data.map((entry: StartDataItem | NoteDetails) => (
+            {data?.map((entry: StartDataItem | NoteDetails) => (
               <Cell fill={entry.color} stroke={entry.color} key={new Date()} />
             ))}
           </Pie>

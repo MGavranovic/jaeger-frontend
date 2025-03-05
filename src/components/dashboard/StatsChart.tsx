@@ -56,11 +56,11 @@ function StatsChart() {
   const user = useSelector((state: RootState) => state?.user);
   const { data: notes = [], isLoading } = useNotes(user?.id);
 
-  const applications: number = notes.length;
-  const rejections: number = notes.filter(
+  const applications: number = notes?.length;
+  const rejections: number = notes?.filter(
     (note) => note.applicationStatus === "rejected"
   ).length;
-  const offers: number = notes.filter(
+  const offers: number = notes?.filter(
     (note) => note.applicationStatus === "offer"
   ).length;
 
