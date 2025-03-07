@@ -179,7 +179,7 @@ function NoteDetails() {
           <StyledText>Applied on</StyledText>
           <StyledSeparator>&rarr;</StyledSeparator>
           <StyledText>
-            {note.appliedOn.toLocaleDateString("en-UK", {
+            {new Date(note.appliedOn).toLocaleDateString("en-UK", {
               day: "2-digit",
               month: "2-digit",
               year: "numeric",
