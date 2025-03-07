@@ -12,6 +12,8 @@ import {
 } from "react-icons/hi2";
 import { HiOfficeBuilding } from "react-icons/hi";
 import Button from "../ui/Button";
+import { useState } from "react";
+import NoteDetailsModal from "../components/notedetails/NoteDetailsModal";
 
 const StyledContainer = styled.div`
   display: flex;
@@ -100,13 +102,22 @@ const StyledBtn = styled(Button)`
 function NoteDetails() {
   const navigate = useNavigate();
   const location = useLocation();
+  const [modalOpen, setModalOpen] = useState(false);
+
+  function handleOpenModal() {
+    setModalOpen(true);
+  }
+
   const note = location.state?.note;
   return (
     <StyledContainer>
       <StyledHeadingContainer>
-        <StyledHeadingId as="h3">Note ID# {note.id}</StyledHeadingId>
-        <StyledHeadingStatus as="h3" applicationStatus={note.applicationStatus}>
-          {note.applicationStatus}
+        <StyledHeadingId as="h3">Note ID# {note?.id}</StyledHeadingId>
+        <StyledHeadingStatus
+          as="h3"
+          applicationStatus={note?.applicationStatus}
+        >
+          {note?.applicationStatus}
         </StyledHeadingStatus>
       </StyledHeadingContainer>
       <StyledDetailsContainer>
@@ -120,7 +131,7 @@ function NoteDetails() {
           />
           <StyledText>Company name</StyledText>
           <StyledSeparator>&rarr;</StyledSeparator>
-          <StyledText>{note.companyName}</StyledText>
+          <StyledText>{note?.companyName}</StyledText>
         </StyledDetailsSectionsContainer>
 
         {/*TODO: later when backend and auth is in, user will be displayed (user/current user)/}
@@ -139,7 +150,7 @@ function NoteDetails() {
           />
           <StyledText>Email address</StyledText>
           <StyledSeparator>&rarr;</StyledSeparator>
-          <StyledText>{note.email}</StyledText>
+          <StyledText>{note?.email}</StyledText>
         </StyledDetailsSectionsContainer>
 
         <StyledDetailsSectionsContainer>
@@ -152,7 +163,7 @@ function NoteDetails() {
           />
           <StyledText>Position</StyledText>
           <StyledSeparator>&rarr;</StyledSeparator>
-          <StyledText>{note.position}</StyledText>
+          <StyledText>{note?.position}</StyledText>
         </StyledDetailsSectionsContainer>
 
         <StyledDetailsSectionsContainer>
@@ -165,7 +176,7 @@ function NoteDetails() {
           />
           <StyledText>Salary</StyledText>
           <StyledSeparator>&rarr;</StyledSeparator>
-          <StyledText>${note.salary}</StyledText>
+          <StyledText>${note?.salary}</StyledText>
         </StyledDetailsSectionsContainer>
 
         <StyledDetailsSectionsContainer>
@@ -179,7 +190,7 @@ function NoteDetails() {
           <StyledText>Applied on</StyledText>
           <StyledSeparator>&rarr;</StyledSeparator>
           <StyledText>
-            {new Date(note.appliedOn).toLocaleDateString("en-UK", {
+            {new Date(note?.appliedOn).toLocaleDateString("en-UK", {
               day: "2-digit",
               month: "2-digit",
               year: "numeric",
@@ -188,12 +199,13 @@ function NoteDetails() {
         </StyledDetailsSectionsContainer>
       </StyledDetailsContainer>
       <StyledBtnContainer>
-        <StyledBtn>Edit</StyledBtn>
+        <StyledBtn onClick={handleOpenModal}>Edit</StyledBtn>
         <StyledBtn btnType="delete">Delete</StyledBtn>
         <StyledBtn btnType="cancel" onClick={() => navigate(-1)}>
           Back
         </StyledBtn>
       </StyledBtnContainer>
+      {modalOpen && <NoteDetailsModal note={note} />}
     </StyledContainer>
   );
 }
