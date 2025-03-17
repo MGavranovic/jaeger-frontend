@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import Button from "../../ui/Button";
+import { useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
 
 const FormContainer = styled.div`
   position: fixed;
@@ -45,22 +48,34 @@ const StyledTextArea = styled.textarea`
   width: 60%;
 `;
 
-function NoteDetailsModal({ note, closeModal }) {
+function NoteDetailsModal({ note, closeModal, onSubmit }) {
+  const { register, reset, getValues, handleSubmit, formState } = useForm();
+  const { errors } = formState;
+
   return (
     <Overlay>
       <FormContainer>
-        <StyledForm>
+        <StyledForm onSubmit={handleSubmit(onSubmit)}>
           <StyledFormSection>
             <label>Company Name:</label>
-            <StyledInput value={note?.companyName}></StyledInput>
+            <StyledInput
+              defaultValue={note?.companyName}
+              {...register("companyName")}
+            ></StyledInput>
           </StyledFormSection>
           <StyledFormSection>
             <label>Position:</label>
-            <StyledInput value={note?.position}></StyledInput>
+            <StyledInput
+              defaultValue={note?.position}
+              {...register("position")}
+            ></StyledInput>
           </StyledFormSection>
           <StyledFormSection>
             <label>Status:</label>
-            <select value={note?.applicationStatus}>
+            <select
+              defaultValue={note?.applicationStatus}
+              {...register("applicationStatus")}
+            >
               <option value="applied">Applied</option>
               <option value="got-response">Got response</option>
               <option value="interview">Interview</option>
@@ -71,21 +86,28 @@ function NoteDetailsModal({ note, closeModal }) {
           </StyledFormSection>
           <StyledFormSection>
             <label>Salary:</label>
-            <StyledInput value={note?.salary}></StyledInput>
+            <StyledInput
+              defaultValue={note?.salary}
+              {...register("salary")}
+            ></StyledInput>
           </StyledFormSection>
           <StyledFormSection>
             <label>Description:</label>
-            <StyledTextArea value={note?.description}></StyledTextArea>
+            <StyledTextArea
+              defaultValue={note?.description}
+              {...register("description")}
+            ></StyledTextArea>
           </StyledFormSection>
           <StyledFormSection>
             <label>Applied on:</label>
             <input
               type="date"
-              value={
+              defaultValue={
                 note?.appliedOn
                   ? new Date(note.appliedOn).toISOString().split("T")[0]
                   : ""
               }
+              {...register("appliedOn")}
             ></input>
           </StyledFormSection>
           <StyledFormSection>

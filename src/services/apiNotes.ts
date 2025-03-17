@@ -70,6 +70,38 @@ export async function addNote(note) {
 
 // TODO: structure the json sent to the server since it can't take one big object and decode it properly
 
+export async function updateNote(note) {
+  const {
+    id,
+    companyName,
+    position,
+    salary,
+    applicationStatus,
+    appliedOn,
+    description,
+    userId,
+  } = note;
+
+  const res = await fetch("http://localhost:8080/api/notes/update", {
+    method: "POST",
+    body: JSON.stringify({
+      companyName,
+      position,
+      salary,
+      applicationStatus,
+      appliedOn,
+      description,
+      userId,
+      noteId: id,
+    }),
+  });
+  if (res.ok) {
+    console.log("Updated note data sent successfully to the server");
+  } else {
+    console.error("Failed sending updated note data to the server");
+  }
+}
+
 /*
 interface Note {
   appliedOn: Date;

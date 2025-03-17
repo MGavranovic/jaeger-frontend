@@ -14,6 +14,9 @@ import { HiOfficeBuilding } from "react-icons/hi";
 import Button from "../ui/Button";
 import { useRef, useState } from "react";
 import NoteDetailsModal from "../components/notedetails/NoteDetailsModal";
+import { useUpdateNote } from "../components/notedetails/useUpdateNote";
+import { RootState } from "../store/store";
+import { useSelector } from "react-redux";
 
 const StyledContainer = styled.div`
   display: flex;
@@ -102,7 +105,11 @@ const StyledBtn = styled(Button)`
 function NoteDetails() {
   const navigate = useNavigate();
   const location = useLocation();
+  const { updateNote, isPending } = useUpdateNote();
   const [modalOpen, setModalOpen] = useState(false);
+  const user = useSelector((state: RootState) => state?.user);
+
+  const note = location.state?.note;
 
   function handleOpenModal() {
     setModalOpen(true);
@@ -113,7 +120,23 @@ function NoteDetails() {
     setModalOpen(false);
   }
 
-  const note = location.state?.note;
+  function handleSubmit(data) {
+    console.log("Edit note data: ", data);
+    updateNote(
+      {
+        ...data,
+        userId: user?.id,
+        id: note?.id,
+      },
+      {
+        onSuccess: () => {
+          console.log(data, user?.id, note?.id);
+          setModalOpen(false);
+        },
+      }
+    );
+  }
+
   return (
     <StyledContainer>
       <StyledHeadingContainer>
@@ -211,7 +234,11 @@ function NoteDetails() {
         </StyledBtn>
       </StyledBtnContainer>
       {modalOpen && (
-        <NoteDetailsModal note={note} closeModal={handleCloseModal} />
+        <NoteDetailsModal
+          note={note}
+          closeModal={handleCloseModal}
+          onSubmit={handleSubmit}
+        />
       )}
     </StyledContainer>
   );
