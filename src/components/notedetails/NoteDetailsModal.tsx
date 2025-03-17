@@ -45,7 +45,7 @@ const StyledTextArea = styled.textarea`
   width: 60%;
 `;
 
-function NoteDetailsModal({ note }) {
+function NoteDetailsModal({ note, closeModal }) {
   return (
     <Overlay>
       <FormContainer>
@@ -90,7 +90,9 @@ function NoteDetailsModal({ note }) {
           </StyledFormSection>
           <StyledFormSection>
             <Button btnType="main">Update</Button>
-            <Button btnType="delete">Cancel</Button>
+            <Button btnType="delete" onClick={closeModal} type="button">
+              Cancel
+            </Button>
           </StyledFormSection>
         </StyledForm>
       </FormContainer>
@@ -99,57 +101,3 @@ function NoteDetailsModal({ note }) {
 }
 
 export default NoteDetailsModal;
-
-/*
-<StyledFrom onSubmit={handleSubmit(onSubmit)}>
-      <StyledFormSection>
-        <label>Company Name:</label>
-        <StyledInput
-          type="text"
-          {...register("companyName", { required: "This field is required" })}
-        />
-        </StyledFormSection>
-        <StyledFormSection>
-          <label>Position:</label>
-          <StyledInput
-            type="text"
-            {...register("position", { required: "This field is required" })}
-          />
-        </StyledFormSection>
-        <StyledFormSection>
-          <label>Salary ?? add parentheses:</label>
-          <StyledInput type="text" {...register("salary")} />
-        </StyledFormSection>
-  
-        <StyledFormSection>
-          <label>Status:</label>
-          <select {...register("applicationStatus")}>
-            <option value="applied">Applied</option>
-            <option value="got-response">Got response</option>
-            <option value="interview">Interview</option>
-            <option value="offer">Offer</option>
-            <option value="accepted">Accepted</option>
-            <option value="rejected">Rejected</option>
-          </select>
-        </StyledFormSection>
-  
-        <StyledFormSection>
-          <label>Description:</label>
-          <textarea {...register("description")} />
-        </StyledFormSection>
-  
-        <StyledFormSection>
-          <label>Applied On:</label>
-          <input type="date" {...register("appliedOn")} />
-        </StyledFormSection>
-  
-        <StyledButtonContainer>
-          <Button size="medium" btnType="main">
-            Submit
-          </Button>
-          <Button size="medium" btnType="cancel">
-            Cancel
-          </Button>
-        </StyledButtonContainer>
-      </StyledFrom>
-*/

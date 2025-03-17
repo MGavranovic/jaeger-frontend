@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { ApplicationStatus } from "../data/data";
 
 import HeadingContainer from "../ui/HeadingContainer";
@@ -12,7 +12,7 @@ import {
 } from "react-icons/hi2";
 import { HiOfficeBuilding } from "react-icons/hi";
 import Button from "../ui/Button";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import NoteDetailsModal from "../components/notedetails/NoteDetailsModal";
 
 const StyledContainer = styled.div`
@@ -106,6 +106,11 @@ function NoteDetails() {
 
   function handleOpenModal() {
     setModalOpen(true);
+  }
+
+  function handleCloseModal(e) {
+    // e.preventDefault();
+    setModalOpen(false);
   }
 
   const note = location.state?.note;
@@ -205,7 +210,9 @@ function NoteDetails() {
           Back
         </StyledBtn>
       </StyledBtnContainer>
-      {modalOpen && <NoteDetailsModal note={note} />}
+      {modalOpen && (
+        <NoteDetailsModal note={note} closeModal={handleCloseModal} />
+      )}
     </StyledContainer>
   );
 }
