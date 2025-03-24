@@ -52,6 +52,15 @@ function NoteDetailsModal({ note, closeModal, onSubmit }) {
   const { register, reset, getValues, handleSubmit, formState } = useForm();
   const { errors } = formState;
 
+  const date = new Date(note.appliedOn);
+  const correctDate = new Date(date - date.getTimezoneOffset() * 60000)
+    .toISOString()
+    .split("T")[0];
+  console.log(
+    "*************************************************Date in modal: ",
+    correctDate
+  );
+
   return (
     <Overlay>
       <FormContainer>
@@ -104,7 +113,9 @@ function NoteDetailsModal({ note, closeModal, onSubmit }) {
               type="date"
               defaultValue={
                 note?.appliedOn
-                  ? new Date(note.appliedOn).toISOString().split("T")[0]
+                  ? new Date(date - date.getTimezoneOffset() * 60000)
+                      .toISOString()
+                      .split("T")[0]
                   : ""
               }
               {...register("appliedOn")}
