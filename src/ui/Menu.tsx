@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Button from "./Button";
 import { NoteDetails } from "../data/data";
+import { useDeleteNote } from "../components/notes/useDeleteNote";
 
 interface MenuProps {
   note: NoteDetails;
@@ -27,7 +28,16 @@ const MenuButton = styled(Button)`
 `;
 
 function Menu({ note, handleCloseMenu }: MenuProps) {
+  const { isPending, deleteNote } = useDeleteNote();
   const navigate = useNavigate();
+
+  function handleDeleteNote() {
+    deleteNote(note?.id, {
+      onSuccess: () => {
+        handleCloseMenu();
+      },
+    });
+  }
 
   return (
     <StyledMenu>
@@ -38,7 +48,13 @@ function Menu({ note, handleCloseMenu }: MenuProps) {
       >
         Details
       </MenuButton>
-      <MenuButton size="small" btnType="delete">
+      <MenuButton
+        size="small"
+        btnType="delete"
+        onClick={() => {
+          handleDeleteNote();
+        }}
+      >
         Delete
       </MenuButton>
       <MenuButton size="small" btnType="cancel" onClick={handleCloseMenu}>

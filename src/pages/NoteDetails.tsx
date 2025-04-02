@@ -18,6 +18,7 @@ import { useUpdateNote } from "../components/notedetails/useUpdateNote";
 import { RootState } from "../store/store";
 import { useSelector } from "react-redux";
 import { useNotes } from "../components/notes/useNotes";
+import { useDeleteNote } from "../components/notes/useDeleteNote";
 
 const StyledContainer = styled.div`
   display: flex;
@@ -107,6 +108,8 @@ function NoteDetails() {
   const navigate = useNavigate();
   const location = useLocation();
   const { updateNote, isPending } = useUpdateNote();
+  const { deleteNote, isPending: isPendingDeletion } = useDeleteNote();
+
   const [modalOpen, setModalOpen] = useState(false);
   const user = useSelector((state: RootState) => state?.user);
   // const { data, isLoading, error } = useNotes(user?.id);
@@ -138,6 +141,10 @@ function NoteDetails() {
         },
       }
     );
+  }
+
+  function handleDeleteNote() {
+    deleteNote(note?.id);
   }
 
   return (
@@ -231,7 +238,9 @@ function NoteDetails() {
       </StyledDetailsContainer>
       <StyledBtnContainer>
         <StyledBtn onClick={handleOpenModal}>Edit</StyledBtn>
-        <StyledBtn btnType="delete">Delete</StyledBtn>
+        <StyledBtn btnType="delete" onClick={handleDeleteNote}>
+          Delete
+        </StyledBtn>
         <StyledBtn btnType="cancel" onClick={() => navigate(-1)}>
           Back
         </StyledBtn>

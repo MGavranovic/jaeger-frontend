@@ -6,7 +6,7 @@ export function useNotes(userId) {
     queryKey: ["notes", userId],
     queryFn: () => getNotes(userId),
     refetchOnWindowFocus: false,
-    refetchOnMount: false,
+    refetchOnMount: true,
     refetchOnReconnect: true,
   });
 }

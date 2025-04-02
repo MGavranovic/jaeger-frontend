@@ -119,3 +119,17 @@ export async function updateNote(note) {
     throw error;
   }
 }
+
+export async function deleteNote(id) {
+  const res = await fetch(
+    `http://localhost:8080/api/notes/delete/${encodeURIComponent(id)}`,
+    {
+      method: "DELETE",
+    }
+  );
+  if (res.ok) {
+    console.log("Note successfully deleted");
+  } else {
+    console.error("Unable to delete note");
+  }
+}
