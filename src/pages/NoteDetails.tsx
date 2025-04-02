@@ -17,6 +17,7 @@ import NoteDetailsModal from "../components/notedetails/NoteDetailsModal";
 import { useUpdateNote } from "../components/notedetails/useUpdateNote";
 import { RootState } from "../store/store";
 import { useSelector } from "react-redux";
+import { useNotes } from "../components/notes/useNotes";
 
 const StyledContainer = styled.div`
   display: flex;
@@ -108,6 +109,7 @@ function NoteDetails() {
   const { updateNote, isPending } = useUpdateNote();
   const [modalOpen, setModalOpen] = useState(false);
   const user = useSelector((state: RootState) => state?.user);
+  // const { data, isLoading, error } = useNotes(user?.id);
 
   const note = location.state?.note;
 
@@ -132,6 +134,7 @@ function NoteDetails() {
         onSuccess: () => {
           console.log(data, user?.id, note?.id);
           setModalOpen(false);
+          navigate("/notes", { state: { refetch: true } });
         },
       }
     );

@@ -82,31 +82,40 @@ export async function updateNote(note) {
     userId,
   } = note;
 
-  const res = await fetch("http://localhost:8080/api/notes/update", {
-    method: "POST",
-    body: JSON.stringify({
-      companyName,
-      position,
-      salary,
-      applicationStatus,
-      appliedOn,
-      description,
-      userId,
-      noteId: id,
-    }),
-  });
-  if (res.ok) {
-    console.log("Updated note data sent successfully to the server");
-  } else {
-    console.error("Failed sending updated note data to the server");
+  try {
+    const res = await fetch("http://localhost:8080/api/notes/update", {
+      method: "POST",
+      body: JSON.stringify({
+        companyName,
+        position,
+        salary,
+        applicationStatus,
+        appliedOn,
+        description,
+        userId,
+        noteId: id,
+      }),
+    });
+    if (!res.ok) {
+      console.error("Failed sending updated note data to the server");
+    } else {
+      console.log("Updated note data sent successfully to the server");
+
+      const updateRes = await fetch(
+        `http://localhost:8080/api/notes/current/${encodeURIComponent(
+          id
+        )}?t=${Date.now()}`,
+        { method: "GET", headers: { "Content-Type": "application/json" } }
+      );
+      if (!updateRes.ok) {
+        throw new Error("Failed getting the current note after update");
+      }
+      const data = await updateRes.json();
+      console.log(data);
+      return data;
+    }
+  } catch (error) {
+    console.error(error);
+    throw error;
   }
 }
-
-/*
-interface Note {
-  appliedOn: Date;
-  updatedAt: Date;
-  description: string;
-  userId: number;
-}
-*/
